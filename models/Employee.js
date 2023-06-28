@@ -39,11 +39,12 @@ Employee.init(
             allowNull: false,
             references: { model: Jobs, key: 'id' }
         }
-
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true,
+        createdAt: 'creationDate',
+        updatedAt: 'modifiedDate',
         freezeTableName: true,
         underscored: true,
         modelName: 'employee'
