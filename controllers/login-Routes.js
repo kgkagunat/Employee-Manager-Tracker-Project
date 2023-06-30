@@ -1,11 +1,11 @@
+const router = require('express').Router();
+
+router.get('/', (req, res) => {
+    res.send('Login route');
+});
+
+module.exports = router;
 
 
-
-
-
-
-
-
-
-
-// !!! Jose, this is the login-Routes.js. I'm guessing the passport.js stuff goes in here !!!
+// !!! TESTING PURPOSES ONLY !!!
+// !!! THIS LOGIN ROUTE WILL BE REPLACED IN THE FUTURE !!!

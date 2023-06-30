@@ -5,9 +5,9 @@ const sequelize = require('../config/connection');
 //============================================================================================
 
 class User extends Model {
-    // checkPassword(loginPw) {
-    //     return bcrypt.compareSync(loginPw, this.password);
-    // }                                
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);   // !!! TESTING PURPOSES ONLY !!!
+    }                                
 }                   // !!! For JOSE, need to enter the passport.js and replace bcrypt !!!
 
 //============================================================================================
@@ -39,12 +39,12 @@ User.init(
     {
         hooks: {
             beforeCreate: async (newUserData) => {      // !!! For JOSE, need to use passport.js and replace bcrypt here. Might need to change this function as well. Don't know if passport.js uses `hooks:` !!!
-                // newUserData.password = await bcrypt.hash(newUserData.password, 10);
-                // return newUserData;
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);     // !!! TESTING PURPOSES ONLY !!!
+                return newUserData;
             },
             beforeUpdate: async (updatedUserData) => {      // !!! For JOSE, need to use passport.js and replace bcrypt here. Might need to change this function as well. Don't know if passport.js uses `hooks:` !!!
-                // updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-                // return updatedUserData;
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);     // !!! TESTING PURPOSES ONLY !!!
+                return updatedUserData;
             },
         },
         sequelize,

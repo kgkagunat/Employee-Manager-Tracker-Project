@@ -1,6 +1,7 @@
 const Department = require('./Department');
 const Employee = require('./Employee');
 const Jobs = require('./Jobs');
+const User = require('./User');
 
 //============================================================================================
 
@@ -30,6 +31,6 @@ Employee.belongsTo(Department, {        // Employee belongs to department       
 
 //============================================================================================
 
-module.exports = { Department, Employee, Jobs };
+module.exports = { Department, Employee, Jobs, User };
 
 // Let me know if there are any `errors` in the model

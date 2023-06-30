@@ -1,11 +1,11 @@
-const router = require('express').Router();                 // Import Router Express
+const router = require('express').Router();                 
 
-const departmentRoutes = require('./department-Routes');    // Import `Department` Routes
-const jobsRoutes = require('./jobs-Routes');                // Import `Jobs` Routes
-const employeeRoutes = require('./employee-Routes');        // Import `Employee` Routes
+const departmentRoutes = require('./department-Routes');   
+const jobsRoutes = require('./jobs-Routes');               
+const employeeRoute = require('./employee-Routes');       
 
-router.use('/departments', departmentRoutes);               // Path `departmentRoutes` => /departments
-router.use('/jobs', jobsRoutes);                            // Path `jobsRoutes` => /jobs
-router.use('/employees', employeeRoutes);                   // Path `employeeRoutes` => /employees 
+router.use('/departments', departmentRoutes);               
+router.use('/jobs', jobsRoutes);                            
+router.use('/employees', employeeRoute);                   
 
-module.exports = router;                                    // Export `router`
+module.exports = router;                                    

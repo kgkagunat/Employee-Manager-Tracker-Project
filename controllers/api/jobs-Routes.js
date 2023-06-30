@@ -7,7 +7,7 @@ const { Jobs } = require('../../models');
 router.get('/', async (req, res) => {
     try {
         const jobsData = await Jobs.findAll();
-        res.status(200),json(jobsData);
+        res.status(200).json(jobsData); 
     } catch (err) {
         res.status(500).json(err);
     };
