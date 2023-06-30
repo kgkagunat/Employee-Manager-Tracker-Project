@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Jobs = require('./Jobs');
+const Department = require('./Department');
 
 class Employee extends Model {}
 
@@ -37,7 +38,14 @@ Employee.init(
         job_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            references: { model: Jobs, key: 'id' }
+            references: { model: Jobs, key: 'id' },
+            onDelete: 'SET NULL'
+        },
+        department_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: { model: Department, key: 'id' },
+            onDelete: 'SET NULL'
         }
     },
     {
