@@ -1,17 +1,15 @@
 const router = require('express').Router();
 const { User } = require('../models');
 const initialize = require('../utils/initialize');
+const checkAuthenticated = require('../utils/checkAuth')
+const checkNotAuthenticated = require('../utils/checkAuth')
 
-router.get('/', initialize, async (req, res) =>{
-  res.render()
+router.get('/', checkAuthenticated, checkNotAuthenticated, async (req, res) =>{
+  res.render('homepage')
 })
 
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-      res.redirect('/');
-      return;
-    }
-    res.render('login', {title: 'Test'});
+    res.render('login');
 });
 
 module.exports = router;
