@@ -1,4 +1,4 @@
-const { Model, Datatypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 // const passport = require('passport');   // !!! For JOSE, this line is where the passport.js file will be loaded. This is just a placeholder for now. !!!
 const sequelize = require('../config/connection');
 
