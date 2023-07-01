@@ -2,6 +2,10 @@ const { Department } = require('../models');
 
 const departmentData = [
     {
+        department_name: 'Unassigned Department (DO NOT REMOVE)',
+        description: 'This department is for unassigned departments (DO NOT REMOVE)'
+    },
+    {
         department_name: 'Engineering',
         description: 'The designing and testing of machines and components'
     },

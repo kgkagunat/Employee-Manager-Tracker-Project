@@ -7,8 +7,8 @@ const employeeData = [
         employee_title: 'Lead Engineer',
         employee_manager: 'Is Manager',
         employee_salary: '125000',
-        job_id: 1,
-        department_id: 1,
+        job_id: 2,
+        department_id: 2
     },
     {
         first_name: 'Luke',
@@ -16,8 +16,8 @@ const employeeData = [
         employee_title: 'Lawyer',
         employee_manager: 'Is Manager',
         employee_salary: '525000',
-        job_id: 2,
-        department_id: 2,
+        job_id: 3,
+        department_id: 3
     }
 ]
 

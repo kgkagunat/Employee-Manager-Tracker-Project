@@ -1,12 +1,24 @@
 const router = require('express').Router();
-const { Employee } = require('../../models');
+const { Department, Jobs, Employee  } = require('../../models');
 
 //===========================================================================
 
 // GET all employees
 router.get('/', async (req, res) => {
     try {
-        const employeeData = await Employee.findAll();
+        const employeeData = await Employee.findAll({
+            include: [
+                {
+                    model: Department,
+                    attributes: ['id', 'department_name']
+                },
+                {
+                    model: Jobs,
+                    attributes: ['id', 'job_title']
+                }
+            ]
+        });
+
         res.status(200).json(employeeData);
     } catch (err) {
         res.status(500).json(err);
@@ -18,7 +30,19 @@ router.get('/', async (req, res) => {
 // GET a single employee by id
 router.get('/:id', async (req, res) => {
     try {
-        const employeeData = await Employee.findByPk(req.params.id);
+        const employeeData = await Employee.findByPk(req.params.id, {
+            include: [
+                {
+                    model: Department,
+                    attributes: ['id', 'department_name']
+                },
+                {
+                    model: Jobs,
+                    attributes: ['id', 'job_title']
+                }
+            ]
+        });
+
         res.status(200).json(employeeData);
     } catch (err) {
         res.status(500).json(err);

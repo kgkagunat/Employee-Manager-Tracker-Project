@@ -26,7 +26,6 @@ Jobs.init(
             type: DataTypes.INTEGER,
             allowNull: true,
             references: { model: Department, key: 'id'},
-            onDelete: 'SET NULL',
         },
     },
     {

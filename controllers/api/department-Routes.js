@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Department } = require('../../models');
+const { Department, Jobs, Employee } = require('../../models');
 
 //===========================================================================
 
@@ -60,16 +60,35 @@ router.put('/:id', async (req, res) => {
 
 //===========================================================================
 
-// DELETE a Department by id
+// DELETE a Department by id (re-assign jobs & employees to Unassigned Department)
 router.delete('/:id', async (req, res) => {
     try {
         const departmentToDelete = await Department.findByPk(req.params.id);    // Fetch the `Department` model. Stores data in the `departmentToDelete` TEMPORARILY for only this function router.delete(). Once function ends, `departmentToDelete` will be garbaged.
-
         if (!departmentToDelete) {
             res.status(404).json({ message: 'No department found with this id!' });
             return;
         };
 
+        // Fetch the `Unassigned Department`
+        const unassignedDepartment = await Department.findOne({         
+            where: {department_name: 'Unassigned Department (DO NOT REMOVE)'}
+        });
+        if (!unassignedDepartment) {
+            res.status(404).json({ message: 'No Unassigned Department found!' });
+            return;
+        };
+
+        // Update jobs to Unassigned Department
+        await Jobs.update({ department_id: unassignedDepartment.id }, {
+            where: { department_id: departmentToDelete.id }
+        });
+
+        // Update employees to Unassigned Department
+        await Employee.update({ department_id: unassignedDepartment.id }, {
+            where: { department_id: departmentToDelete.id }
+        });
+
+        // Delete Department
         await Department.destroy({
             where: {id: req.params.id},
         });

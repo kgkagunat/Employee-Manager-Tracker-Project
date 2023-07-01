@@ -39,13 +39,11 @@ Employee.init(
             type: DataTypes.INTEGER,
             allowNull: true,
             references: { model: Jobs, key: 'id' },
-            onDelete: 'SET NULL'
         },
         department_id: {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: { model: Department, key: 'id' },
-            onDelete: 'SET NULL'
         }
     },
     {
