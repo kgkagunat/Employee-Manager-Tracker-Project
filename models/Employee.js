@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Jobs = require('./Jobs');
+const Department = require('./Department');
 
 class Employee extends Model {}
 
@@ -36,14 +37,20 @@ Employee.init(
         },
         job_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            references: { model: Jobs, key: 'id' }
+            allowNull: true,
+            references: { model: Jobs, key: 'id' },
+        },
+        department_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: { model: Department, key: 'id' },
         }
-
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true,
+        createdAt: 'creationDate',
+        updatedAt: 'modifiedDate',
         freezeTableName: true,
         underscored: true,
         modelName: 'employee'

@@ -12,36 +12,21 @@ Department.init(
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
-      },
+        },
         department_name: {
             type: DataTypes.STRING,
             allowNull: false,
-      },
+        },
         description: {
             type: DataTypes.STRING,
             allowNull: false,
-      },
-        creationDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-      },
-        modifiedDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-      },
+        },
     },
     {
-        hooks: {
-            beforeCreate: async (department) => {       
-                department.creationDate = new Date();   // Timestamping the DATE, on creation
-                department.modifiedDate = new Date();   // Timestamping the DATE, when modified/updated
-            },
-            beforeUpdate: async (department) => {
-                department.modifiedDate = new Date();   // Timestamping the DATE, on update
-            },
-        },
         sequelize,
-        timestamps: false,
+        timestamps: true, // true by default, added for clarity
+        createdAt: 'creationDate', // renames the auto generated createdAt to creationDate
+        updatedAt: 'modifiedDate', // renames the auto generated updatedAt to modifiedDate
         freezeTableName: true,
         underscored: true,
         modelName: 'department',
