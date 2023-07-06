@@ -8,17 +8,17 @@ router.get('/test', (req, res) => {
   res.send('Homepage Test');
 });
 
-// router.get('/', initialize, async (req, res) =>{
-//   // !!! Karina, please enter the name of the handlebar for the 'homepage' in the parenthesis of `res.render()`. Delete comment when you are done.
-//   res.render()
-// })
+router.get('/', initialize, async (req, res) =>{
+  
+  res.render('homepage')
+})
 
-// router.get('/login', (req, res) => {
-//     if (req.session.logged_in) {
-//       res.redirect('/');
-//       return;
-//     }
-//     res.render('login', {title: 'Test'});
-// });
+router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+      res.redirect('/');
+      return;
+    }
+    res.render('login', {title: 'Test'});
+});
 
 module.exports = router;
