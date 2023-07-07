@@ -2,7 +2,6 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Department = require('./Department');
 
-
 class Jobs extends Model {}
 
 //============================================================================================
@@ -25,13 +24,15 @@ Jobs.init(
         },
         department_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: { model: Department, key: 'id'},
         },
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true,
+        createdAt: 'creationDate',
+        updatedAt: 'modifiedDate',
         freezeTableName: true,
         underscored: true,
         modelName: 'jobs',
