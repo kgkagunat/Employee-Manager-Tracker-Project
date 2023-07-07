@@ -310,10 +310,7 @@ h1 {
     cursor: pointer;
 }
 
-
-
-
-
+/* Department Modals */
 
 .modal::backdrop {
     background: #5555554f;
@@ -381,3 +378,9 @@ h1 {
     margin: 20px 0;
     
 }
+
+
+
+
+
+
