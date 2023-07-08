@@ -5,7 +5,7 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password-login').value.trim();
 
     if (email && password) {
-        const response = await fetch('/login', {
+        const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ const loginFormHandler = async (event) => {
                 password: password,
             }),
         });
-
+        console.log(response);
         if (response.ok) {
             document.location.replace('/homepage');
         } else {

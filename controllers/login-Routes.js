@@ -23,10 +23,10 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
 });
 
 // User Login
-router.post('/login', passport.authenticate('local', {
+router.post('/api/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
+  // failureRedirect: '/login',
+  // failureFlash: true
 }));
 
 // User Logout

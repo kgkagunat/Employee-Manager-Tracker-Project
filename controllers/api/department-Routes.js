@@ -3,58 +3,8 @@ const { Department, Jobs, Employee } = require('../../models');
 const { checkAuthenticated } = require('../../utils/checkAuth');
 
 
-
-// GET All Departments
-router.get('/', checkAuthenticated, async (req, res) => {
-    try {
-        const departmentData = await Department.findAll({
-            include: [
-                { 
-                    model: Jobs,
-                    include: [ Employee ] 
-                }
-            ]
-        });
-
-        const departments = departmentData.map((department) => department.get({ plain: true }));
-
-        res.render('departments', { departments });
-    } catch (err) {
-        res.status(500).json(err);
-    };
-});
-
-
-
-// GET a single Department by id
-router.get('/:id', checkAuthenticated, async (req, res) => {
-    try {
-        const departmentData = await Department.findByPk(req.params.id, {
-            include: [
-                { 
-                    model: Jobs,
-                    include: [ Employee ] 
-                }
-            ]
-        });
-
-        if (!departmentData) {
-            res.status(404).json({ message: 'No department found with this id!' });
-            return;
-        }
-
-        const department = departmentData.get({ plain: true });
-
-        res.render('department', { department });
-    } catch (err) {
-        res.status(500).json(err);
-    };
-});
-
-
-
 // POST a new Department
-router.post('/', checkAuthenticated, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         await Department.create(req.body);
         res.redirect('/departments');
@@ -66,7 +16,7 @@ router.post('/', checkAuthenticated, async (req, res) => {
 
 
 // PUT update a Department by id
-router.put('/:id', checkAuthenticated, async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const departmentData = await Department.update(req.body, {
             where: {id: req.params.id},
@@ -86,7 +36,7 @@ router.put('/:id', checkAuthenticated, async (req, res) => {
 
 
 // DELETE a Department by id (re-assign jobs & employees to Unassigned Department)
-router.delete('/:id', checkAuthenticated, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const departmentToDelete = await Department.findByPk(req.params.id);
         if (!departmentToDelete) {
