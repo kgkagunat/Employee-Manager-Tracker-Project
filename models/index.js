@@ -32,4 +32,3 @@ Employee.belongsTo(Department, {        // Employee belongs to department
 //============================================================================================
 
 module.exports = { Department, Employee, Jobs, User };
-

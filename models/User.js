@@ -1,8 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const sequelize = require('../config/connection');
-
-//============================================================================================
+const passportLocalSequelize = require('passport-local-sequelize');
 
 class User extends Model {}                  
 

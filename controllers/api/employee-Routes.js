@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const { Department, Jobs, Employee  } = require('../../models');
+const { checkAuthenticated } = require('../../utils/checkAuth');
 
 //===========================================================================
 
 // GET all employees
-router.get('/', async (req, res) => {
+router.get('/', checkAuthenticated, async (req, res) => {
     try {
         const employeeData = await Employee.findAll({
             include: [
@@ -30,7 +31,7 @@ router.get('/', async (req, res) => {
 //===========================================================================
 
 // GET a single employee by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkAuthenticated, async (req, res) => {
     try {
         const employeeData = await Employee.findByPk(req.params.id, {
             include: [
@@ -62,7 +63,7 @@ router.get('/:id', async (req, res) => {
 //===========================================================================
 
 // POST a new employee
-router.post('/', async (req, res) => {
+router.post('/', checkAuthenticated, async (req, res) => {
     try {
         await Employee.create(req.body);
         res.redirect('/employees');
@@ -74,7 +75,7 @@ router.post('/', async (req, res) => {
 //===========================================================================
 
 // PUT update an employee by id
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkAuthenticated, async (req, res) => {
     try {
         const employeeData = await Employee.update(req.body, {
             where: {id: req.params.id},
@@ -94,7 +95,7 @@ router.put('/:id', async (req, res) => {
 //===========================================================================
 
 // DELETE an employee by id
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkAuthenticated, async (req, res) => {
     try {
         const employeeToDelete = await Employee.findByPk(req.params.id);
 

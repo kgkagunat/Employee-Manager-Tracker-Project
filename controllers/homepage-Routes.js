@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const { User } = require('../models');
-const initialize = require('../utils/initialize');
-const checkAuthenticated = require('../utils/checkAuth')
-const checkNotAuthenticated = require('../utils/checkAuth')
+const { checkAuthenticated } = require('../utils/checkAuth')
+// const initialize = require('../utils/initialize');
+// const checkNotAuthenticated = require('../utils/checkAuth')
 
-router.get('/', checkAuthenticated, checkNotAuthenticated, async (req, res) =>{
+router.get('/', checkAuthenticated, async (req, res) =>{
   res.render('homepage')
 })
 

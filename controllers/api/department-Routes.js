@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
+const { checkAuthenticated } = require('../../utils/checkAuth');
 
 //===========================================================================
 
 // GET All Departments
-router.get('/', async (req, res) => {
+router.get('/', checkAuthenticated, async (req, res) => {
     try {
         const departmentData = await Department.findAll({
             include: [
@@ -26,7 +27,7 @@ router.get('/', async (req, res) => {
 //===========================================================================
 
 // GET a single Department by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkAuthenticated, async (req, res) => {
     try {
         const departmentData = await Department.findByPk(req.params.id, {
             include: [
@@ -53,7 +54,7 @@ router.get('/:id', async (req, res) => {
 //===========================================================================
 
 // POST a new Department
-router.post('/', async (req, res) => {
+router.post('/', checkAuthenticated, async (req, res) => {
     try {
         await Department.create(req.body);
         res.redirect('/departments');
@@ -65,7 +66,7 @@ router.post('/', async (req, res) => {
 //===========================================================================
 
 // PUT update a Department by id
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkAuthenticated, async (req, res) => {
     try {
         const departmentData = await Department.update(req.body, {
             where: {id: req.params.id},
@@ -85,7 +86,7 @@ router.put('/:id', async (req, res) => {
 //===========================================================================
 
 // DELETE a Department by id (re-assign jobs & employees to Unassigned Department)
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkAuthenticated, async (req, res) => {
     try {
         const departmentToDelete = await Department.findByPk(req.params.id);
         if (!departmentToDelete) {

@@ -10,7 +10,6 @@ function refreshDepartments() {
     fetch('/api/departments')
     .then(response => response.json())
     .then(departments => {
-        // TODO: Do 
     })
     .catch(err => console.log(err));
 };
