@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
 const { checkAuthenticated } = require('../../utils/checkAuth');
 
-//===========================================================================
+
 
 // GET all jobs
 router.get('/', checkAuthenticated, async (req, res) => {
@@ -24,7 +24,7 @@ router.get('/', checkAuthenticated, async (req, res) => {
     };
 });
 
-//===========================================================================
+
 
 // GET a single job by id
 router.get('/:id', checkAuthenticated, async (req, res) => {
@@ -51,7 +51,7 @@ router.get('/:id', checkAuthenticated, async (req, res) => {
     };
 });
 
-//===========================================================================
+
 
 // POST a new job
 router.post('/', checkAuthenticated, async (req, res) => {
@@ -63,7 +63,7 @@ router.post('/', checkAuthenticated, async (req, res) => {
     };
 });
 
-//===========================================================================
+
 
 // PUT update a job by id
 router.put('/:id', checkAuthenticated, async (req, res) => {
@@ -83,7 +83,7 @@ router.put('/:id', checkAuthenticated, async (req, res) => {
     };
 });
 
-//===========================================================================
+
 
 // DELETE a job by id
 router.delete('/:id', checkAuthenticated, async (req, res) => {
@@ -119,6 +119,6 @@ router.delete('/:id', checkAuthenticated, async (req, res) => {
     }
 });
 
-//===========================================================================
+
 
 module.exports = router;

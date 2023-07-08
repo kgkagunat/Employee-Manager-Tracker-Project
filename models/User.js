@@ -1,14 +1,13 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const sequelize = require('../config/connection');
-const passportLocalSequelize = require('passport-local-sequelize');
 
 class User extends Model {}                  
 
 //============================================================================================
 
 User.init(
-  {
+    {
       id: {
           type: DataTypes.INTEGER,
           allowNull: false,
@@ -31,11 +30,11 @@ User.init(
           type: DataTypes.STRING,
           allowNull: false,
           validate: {
-          len: [8],
+          len: [8, Infinity],
           },
       },
-  },
-  {
+    },
+    {
       hooks: {
           beforeCreate: async (newUserData) => {     
               newUserData.password = await bcrypt.hash(newUserData.password, 10);   
@@ -51,13 +50,9 @@ User.init(
       freezeTableName: true,
       underscored: true,
       modelName: 'user',
-  }
+    }
 );
 
-passportLocalSequelize.attachToUser(User, {
-usernameField: 'email',
-hashField: 'password',
-});
 
 //============================================================================================
 
