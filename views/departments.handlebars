@@ -68,24 +68,23 @@
 </dialog>
 
 <div class="card-layout">
+{{#each departments as |department|}}
     <div class="card">
         <div class="department-edit">
-            <button class="editbtn"><span class="material-symbols-outlined openbtn">edit_square</span></button>
+            <button class="editbtn" data-id="{{department.id}}"><span class="material-symbols-outlined openbtn">edit_square</span></button>
         </div>
         <div class="department-title">
-            <h3>Engineering</h3>
+            <h3>{{department.department_name}}</h3>
         </div>
         <div class="department-jobs">
             <ul>
-                <li>Lead Engineer</li>
-                <li>Software Engineer</li>
-                <li>Mechanical Engineer</li>
+                {{#each department.jobs as |job|}}
+                    <li>{{job.job_name}}</li>
+                {{/each}}
             </ul>
         </div>
-
     </div>
-
-
+{{/each}}
     <div class="card">
 
         <div class="add"></div>
@@ -94,4 +93,3 @@
 
 
 </div>
-

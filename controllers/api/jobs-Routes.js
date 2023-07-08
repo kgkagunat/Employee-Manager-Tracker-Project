@@ -15,7 +15,9 @@ router.get('/', async (req, res) => {
             ]
         });
 
-        res.status(200).json(jobsData); 
+        const jobs = jobsData.map((job) => job.get({ plain: true }));
+
+        res.render('jobs', { jobs });
     } catch (err) {
         res.status(500).json(err);
     };
@@ -35,7 +37,14 @@ router.get('/:id', async (req, res) => {
             ]
         });
 
-        res.status(200).json(jobData);
+        if (!jobData) {
+            res.status(404).json({ message: 'No job found with this id!' });
+            return;
+        }
+
+        const job = jobData.get({ plain: true });
+
+        res.render('job', { job });
     } catch (err) {
         res.status(500).json(err);
     };
@@ -46,8 +55,8 @@ router.get('/:id', async (req, res) => {
 // POST a new job
 router.post('/', async (req, res) => {
     try {
-        const jobData = await Jobs.create(req.body);
-        res.status(200).json(jobData);
+        await Jobs.create(req.body);
+        res.redirect('/jobs');
     } catch (err) {
         res.status(500).json(err);
     };
@@ -58,17 +67,16 @@ router.post('/', async (req, res) => {
 // PUT update a job by id
 router.put('/:id', async (req, res) => {
     try {
-        const [numberOfAffectedRows, affectedRows] = await Jobs.update(req.body, {
+        const jobData = await Jobs.update(req.body, {
             where: {id: req.params.id},
-            returning: true,
         });
 
-        if (numberOfAffectedRows === 0) {
+        if (!jobData) {
             res.status(404).json({ message: 'No job found with this id!' });
             return;
         };
 
-        res.status(200).json(affectedRows);
+        res.redirect('/jobs');
     } catch (err) {
         res.status(500).json(err);
     };
@@ -79,7 +87,7 @@ router.put('/:id', async (req, res) => {
 // DELETE a job by id
 router.delete('/:id', async (req, res) => {
     try {
-        const jobsToDelete = await Jobs.findByPk(req.params.id);    // Fetch the `Jobs` model. Stores data in the `jobsToDelete` TEMPORARILY for only this function router.delete(). Once function ends, `jobsToDelete` will be garbaged.
+        const jobsToDelete = await Jobs.findByPk(req.params.id);
         if (!jobsToDelete) {
             res.status(404).json({ message: 'No job found with this id!' });
             return;
@@ -104,7 +112,7 @@ router.delete('/:id', async (req, res) => {
             where: { id: req.params.id },
         });
 
-        res.status(200).json({ message: `Job '${jobsToDelete.job_title}' has been deleted!` });
+        res.redirect('/jobs');
     } catch (err) {
         res.status(500).json(err);
     }
