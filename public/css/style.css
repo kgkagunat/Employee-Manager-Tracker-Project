@@ -349,7 +349,7 @@ h1 {
     justify-content: space-around;
 }
 
-.save, .delete, .cancel {
+.save, .delete, .cancel, .jobs-add {
     text-decoration: none;
     border: none;
     border-radius: .375rem;
@@ -382,5 +382,120 @@ h1 {
 
 
 
+/* Employees Page */
+
+.employees-top-bar > ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 40px 0 10px 0;
+    
+}
+.employees-top-bar > ul > li {
+    
+    text-decoration: none;
+    list-style: none;
+    color: var(--darkgray);
+    font-size: 20px;
+    width: 250px;
+    text-align: center;
+    
+}
+
+.employee-info > button {
+    margin-top: -50px;
+    margin-right: 20px;
+    
+}
 
 
+.employee-info > ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 0 0 0;
+    margin: 10px 0 20px 0;
+    border-top: var(--darkgray) solid;
+    
+}
+.employee-info > ul > li {
+    
+    text-decoration: none;
+    list-style: none;
+    color: var(--marigold);
+    font-size: 20px;
+    width: 250px;
+    text-align: center;
+    
+    
+}
+
+
+
+
+
+
+
+/* Jobs Page */
+
+.grid {
+    display: grid;
+    
+    grid-template-columns: 29% 29% 29% 13%;
+    margin: 30px 50px 0 50px;
+    
+   
+    justify-content: center;
+    place-content: center;
+
+    border: var(--screen) solid;
+}
+
+
+.jobs-add:hover {
+    cursor: pointer;
+
+    color: var(--marigold);
+    background-color: var(--screen);
+
+}
+
+.jobs-edit {
+    text-decoration: none;
+    border: none;
+    border-radius: .375rem;
+
+    width: 100px;
+    height: 35px; 
+    font-size: 18px;
+
+    color: var(--marigold);
+    background-color: var(--screen);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.jobs-edit:hover {
+    cursor: pointer;
+
+    color: var(--denim);
+    background-color: var(--marigold);
+}
+
+.jobs-title, .jobs-salary, .jobs-department, .jobs-filler {
+    
+    justify-content: center;
+    
+}
+
+.grid > div {
+    border-bottom: var(--screen) solid;
+    margin-top: 20px;
+    color: var(--screen);
+    
+    
+}
+.grid > .filler > .jobs-edit {
+    justify-content: center;
+    align-items: center;
+}

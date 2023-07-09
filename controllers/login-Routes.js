@@ -5,11 +5,11 @@ const checkAuthenticated = require('../utils/checkAuth')
 const checkNotAuthenticated = require('../utils/checkAuth')
 
 router.get('/', checkAuthenticated, checkNotAuthenticated, async (req, res) =>{
-  res.render('departments')
+  res.render('jobs')
 })
 
 router.get('/login', (req, res) => {
-    res.render('departments');
+    res.render('jobs');
 });
 
 module.exports = router;
