@@ -1,52 +1,9 @@
-<dialog class="modal edit-modal">
-    
-    <button class="cancelbtn"><span class="material-symbols-outlined closebtn">cancel</span></button>
-
-    <h2>Edit Department</h2>
-
-    <label class="department-titles" for="department-title">Department title:</label>
-      <input class="title-input" type="text" id="department-title" />
-
-    <label class="job-lists" for="job-list">Jobs:</label>
-    <div class="jobs-card">
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-
-    <div class="modalbtns">
-        <button class="delete">Delete</button>
-        <button class="save">Save</button>
-    </div>
-
-</dialog>
-
-<dialog class="modal add-modal">
-    
-    <button class="cancelbtn"><span class="material-symbols-outlined closebtn">cancel</span></button>
-
-    <h2>Add Department</h2>
-
-    <label class="department-titles" for="department-title">Department title:</label>
-      <input class="title-input" type="text" id="department-title" />
-
-    <div class="modalbtns">
-        <button class="cancel">Cancel</button>
-        <button class="save">Save</button>
-    </div>
-
-</dialog>
 
 <div class="card-layout">
 {{#each departments as |department|}}
     <div class="card">
         <div class="department-edit">
-            <button class="editbtn" data-id="{{department.id}}"><a href="/departments/{{department.id}}"><span class="material-symbols-outlined openbtn">edit_square</span></a></button>
+            <button class="edit-department" data-id="{{department.id}}"><a href="/departments/{{department.id}}"><span class="material-symbols-outlined openbtn">edit_square</span></a></button>
         </div>
         <div class="department-title">
             <h3>{{department.department_name}}</h3>
@@ -54,7 +11,7 @@
         <div class="department-jobs">
             <ul>
                 {{#each department.jobs as |job|}}
-                    <li>{{job.job_name}}</li>
+                    <li>{{job.job_title}}</li>
                 {{/each}}
             </ul>
         </div>
@@ -64,7 +21,7 @@
 
     <div class="card">
 
-        <div class="add"></div>
+        <button class="add-department"><a href="/departments/department"><div class="add"></div></a></button>
 
     </div>
 

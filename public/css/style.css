@@ -264,7 +264,8 @@ h1 {
     
 }
 
-.editbtn {
+.edit-department {
+    text-decoration: none;
     background: none;
     border: none;
     margin: 10px;
@@ -273,7 +274,15 @@ h1 {
 
 }
 
-.editbtn:hover {
+.add-department {
+    text-decoration: none;
+    background: none;
+    border: none;
+    color: var(--screen);
+
+}
+
+.edit-department:hover, .add-department:hover {
     cursor: pointer;
     color: var(--darkgray);
 }
@@ -324,6 +333,7 @@ h1 {
     background-color: var(--screen);
     color: var(--denim);
     padding: 30px 20px 20px 30px;
+    margin-top: 60px;
    
 }
 
@@ -498,4 +508,9 @@ h1 {
 .grid > .filler > .jobs-edit {
     justify-content: center;
     align-items: center;
+}
+
+
+a {
+    text-decoration: none;
 }
