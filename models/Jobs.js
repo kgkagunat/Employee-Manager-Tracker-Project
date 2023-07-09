@@ -22,6 +22,10 @@ Jobs.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        job_salary: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         department_id: {
             type: DataTypes.INTEGER,
             allowNull: true,
