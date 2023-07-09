@@ -10,6 +10,8 @@
 </head>
 
 <body>
+
+  {{!-- {{#if logged_in}} --}}
   <header>
     <div class="header">
       <h1>
@@ -24,15 +26,16 @@
 
     <div class="line"></div>
 
-    {{#if logged_in}}
+    
     <nav id="dropdown" class="dropdown-content">
-      <a href="/">Home</a>
-      <a href="/departments">Departments</a>
-      <a href="/jobs">Jobs</a>
-      <button id="logout">Logout</button>
+      <a href="/homepage">Home</a>
+      <a href="/homepage/departments">Departments</a>
+      <a href="/homepage/jobs">Jobs</a>
+      <a href="/login">Logout</a>
     </nav>
-    {{/if}}
+    
   </header>
+  {{!-- {{/if}} --}}
   
   <main class="container container-fluid mt-5">
     {{{ body }}}
