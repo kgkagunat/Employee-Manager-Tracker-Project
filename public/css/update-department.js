@@ -1,6 +1,7 @@
 document.querySelector('.edit-modal .save').addEventListener('click', (event) => {
     const departmentId = event.target.getAttribute('data-id');
     const department_name = document.getElementById("department-title").value.trim();
+    
     fetch(`/api/departments/${departmentId}`, {
         method: 'PUT',
         body: JSON.stringify({ department_name }),
