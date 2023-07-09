@@ -11,7 +11,7 @@
 
 <body>
 
-  {{!-- {{#if logged_in}} --}}
+  {{#if logged_in}}
   <header>
     <div class="header">
       <h1>
@@ -23,19 +23,17 @@
         <div class="bar3"></div>
       </div>
     </div>
-
+   
     <div class="line"></div>
 
-    
     <nav id="dropdown" class="dropdown-content">
       <a href="/homepage">Home</a>
       <a href="/departments">Departments</a>
       <a href="/jobs">Jobs</a>
       <a href="/login">Logout</a>
     </nav>
-    
   </header>
-  {{!-- {{/if}} --}}
+  {{/if}}
   
   <main class="container container-fluid mt-5">
     {{{ body }}}
