@@ -14,8 +14,6 @@ html {
 }
 
 
-
-
 /* Login */
 
 .email-login, .password-login {
@@ -257,7 +255,7 @@ h1 {
 
 }
 
-.department-title {
+.department-title, .job-title{
     text-align: center;
     font-size: 25px;
     margin-top: 50px;
@@ -358,6 +356,8 @@ h1 {
 .modalbtns {
     display: flex;
     justify-content: space-around;
+    margin: 20px 10px 0 0;
+    
 }
 
 .save, .delete, .cancel, .jobs-add {
@@ -380,7 +380,7 @@ h1 {
     background-color: var(--denim);
 }
 
-#department-title {
+#department-title, #job-title{
     background-color: var(--screen);
     border: var(--denim) solid;
     border-radius: 5px;
@@ -501,9 +501,7 @@ h1 {
 
 .grid > div {
     border-bottom: var(--screen) solid;
-    margin-top: 20px;
     color: var(--screen);
-    
     
 }
 .grid > .filler > .jobs-edit {
@@ -514,4 +512,48 @@ h1 {
 
 a {
     text-decoration: none;
+    color: var(--screen);
 }
+
+a:hover, .cancelbtn > a:hover {
+    color: var(--darkgray);
+}
+
+.cancelbtn > a {
+    color: var(--marigold)
+}
+
+.dropdown-content > a {
+    color: var(--denim);
+}
+
+.dropdown-content > a:hover {
+    color: var(--marigold);
+}
+
+.jobs-edit > a {
+    color: var(--marigold);
+}
+
+.jobs-edit > a:hover {
+    color: var(--screen);
+
+}
+
+.grid > div {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    display: flex;
+
+    padding: 10px 0 10px 0;
+    border: 1px solid;
+}
+
+.list-title {
+    font-weight: 400;
+    font-size: 25px;
+    color: var(--marigold)
+}
+
+

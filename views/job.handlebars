@@ -1,0 +1,27 @@
+<dialog open class="modal edit-modal">
+    
+    <button class="cancelbtn"><a href="/jobs"><span class="material-symbols-outlined closebtn">cancel</span></a></button>
+
+    <h2>Edit Job</h2>
+
+    <label class="job-titles" for="job-title">Job title: {{job.title}}</label>
+
+    <input class="title-input" type="text" id="job-title" value="{{job.job_title}}"></input>
+
+    <label class="job-titles" for="job-title">Salary: {{job.salary}}</label>
+
+    <input class="title-input" type="text" id="job-title" value="{{job.job_salary}}"></input>
+
+    <label class="department-titles" for="department-title">Department: {{department.title}}</label>
+
+    <input class="title-input" type="text" id="department-title" value="{{department.title}}"></input>
+
+    <div class="modalbtns">
+        <button data-id={{job.id}} class="delete">Delete</button> <!-- Add data-id here -->
+        <button data-id={{job.id}} class="save">Save</button>
+    </div>
+
+    
+</dialog>
+
+<script src="js will be added"></script> 
