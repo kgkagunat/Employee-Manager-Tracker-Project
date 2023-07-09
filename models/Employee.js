@@ -31,10 +31,6 @@ Employee.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        employee_salary: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
         job_id: {
             type: DataTypes.INTEGER,
             allowNull: true,
