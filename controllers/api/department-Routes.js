@@ -1,18 +1,31 @@
 const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
 
-
-// POST a new Department
-router.post('/', async (req, res) => {
+// Route to render 'create-department' view
+router.get('/create', async (req, res) => {
+    console.log('Hit /create route');
     try {
-        await Department.create(req.body);
-        res.redirect('/departments');
+        res.render('create-department');
     } catch (err) {
         res.status(500).json(err);
     };
 });
 
+// POST route to create a new department
+router.post('/', async (req, res) => {
+    // console.log(req.body); // This will print the request body
+    try {
+        const newDepartment = await Department.create({
+            department_name: req.body.department_name,
+            description: req.body.description // include the description field
+        });
 
+        res.status(201).json(newDepartment);
+    } catch (err) {
+        // console.error(err); // This will print the error stack trace
+        res.status(500).json(err);
+    }
+});
 
 // PUT update a Department by id
 router.put('/:id', async (req, res) => {
@@ -26,20 +39,16 @@ router.put('/:id', async (req, res) => {
             return;
         };
 
-        // res.redirect('/departments');
         res.status(200).json({message:'department update'});
     } catch (err) {
         res.status(500).json(err);
     };
 });
 
-
-
 // DELETE a Department by id (re-assign jobs & employees to Unassigned Department)
 router.delete('/:id', async (req, res) => {
     try {
         const departmentToDelete = await Department.findByPk(req.params.id);
-        console.log('Department to delete:', departmentToDelete); // ADDED LINE
 
         if (!departmentToDelete) {
             res.status(404).json({ message: 'No department found with this id!' });
@@ -50,7 +59,6 @@ router.delete('/:id', async (req, res) => {
         const unassignedDepartment = await Department.findOne({
             where: {department_name: 'Unassigned Department (DO NOT REMOVE)'}
         });
-        console.log('Unassigned department:', unassignedDepartment); // ADDED LINE
 
         if (!unassignedDepartment) {
             res.status(404).json({ message: 'No Unassigned Department found!' });
@@ -72,12 +80,10 @@ router.delete('/:id', async (req, res) => {
             where: {id: req.params.id},
         });
 
-        res.status(200).json({message:'Department deleted successfully.'}); // CHANGED LINE
+        res.status(200).json({message:'Department deleted successfully.'});
     } catch (err) {
         res.status(500).json(err);
     };
 });
-
-
 
 module.exports = router;
