@@ -1,11 +1,15 @@
 const router = require('express').Router();
 const { User, Department, Jobs, Employee } = require('../models');
-const { checkAuthenticated } = require('../utils/checkAuth')
-// const initialize = require('../utils/initialize');
-// const checkNotAuthenticated = require('../utils/checkAuth')
+const { checkAuthenticated } = require('../utils/checkAuth');
 
-router.get('/', async (req, res) =>{
-  res.render('homepage')
+// New route for /homepage
+router.get('/homepage', checkAuthenticated, async (req, res) =>{
+  res.render('homepage');
+})
+
+// Existing route
+router.get('/', checkAuthenticated, async (req, res) =>{
+  res.render('homepage');
 })
 
 // GET All Departments
