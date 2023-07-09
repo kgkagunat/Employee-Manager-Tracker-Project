@@ -2,15 +2,21 @@ const router = require('express').Router();
 const { User, Department, Jobs, Employee } = require('../models');
 const { checkAuthenticated } = require('../utils/checkAuth');
 
+//===========================================================================
+
 // New route for /homepage
 router.get('/homepage', checkAuthenticated, async (req, res) =>{
   res.render('homepage');
 })
 
+//===========================================================================
+
 // Existing route
 router.get('/', checkAuthenticated, async (req, res) =>{
   res.render('homepage');
 })
+
+//===========================================================================
 
 // GET All Departments
 router.get('/departments', async (req, res) => {
@@ -31,8 +37,6 @@ router.get('/departments', async (req, res) => {
       res.status(500).json(err);
   };
 });
-
-
 
 // GET a single Department by id
 router.get('/departments/:id', async (req, res) => {
@@ -58,5 +62,111 @@ router.get('/departments/:id', async (req, res) => {
       res.status(500).json(err);
   };
 });
+
+//===========================================================================
+
+// GET all jobs
+router.get('/jobs', async (req, res) => {
+    try {
+        const jobsData = await Jobs.findAll({
+            include: [
+                {
+                    model: Department,
+                    attributes: ['id', 'department_name']
+                }
+            ]
+        });
+
+        const jobs = jobsData.map((job) => job.get({ plain: true }));
+
+        res.render('jobs', { jobs });
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
+// GET a single job by id
+router.get('/jobs/:id', async (req, res) => {
+    try {
+        const jobData = await Jobs.findByPk(req.params.id, {
+            include: [
+                {
+                    model: Department,
+                    attributes: ['id', 'department_name']
+                }
+            ]
+        });
+
+        if (!jobData) {
+            res.status(404).json({ message: 'No job found with this id!' });
+            return;
+        }
+
+        const job = jobData.get({ plain: true });
+
+        res.render('job', { job });
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
+//===========================================================================
+
+// GET all employees
+router.get('/employees', async (req, res) => {
+    try {
+        const employeeData = await Employee.findAll({
+            include: [
+                {
+                    model: Department,
+                    attributes: ['id', 'department_name']
+                },
+                {
+                    model: Jobs,
+                    attributes: ['id', 'job_title']
+                }
+            ]
+        });
+
+        const employees = employeeData.map((employee) => employee.get({ plain: true }));
+
+        res.render('employees', { employees });
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
+
+
+// GET a single employee by id
+router.get('/employees/:id', async (req, res) => {
+    try {
+        const employeeData = await Employee.findByPk(req.params.id, {
+            include: [
+                {
+                    model: Department,
+                    attributes: ['id', 'department_name']
+                },
+                {
+                    model: Jobs,
+                    attributes: ['id', 'job_title']
+                }
+            ]
+        });
+
+        if (!employeeData) {
+            res.status(404).json({ message: 'No employee found with this id!' });
+            return;
+        }
+
+        const employee = employeeData.get({ plain: true });
+
+        res.render('employee', { employee });
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
+//===========================================================================
 
 module.exports = router;

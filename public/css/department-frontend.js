@@ -1,27 +1,29 @@
-// Global Query
-const addModal = document.querySelector('.add-modal');
 const editModal = document.querySelector('.edit-modal');
+let currentDepartmentId; // Variable to store departmentId
 
-
-
-
-// Populate departments
 function refreshDepartments() {
-    fetch('/api/departments')
-    .then(response => response.json())
-    .then(departments => {
-    })
-    .catch(err => console.log(err));
-};
+    // The logic to refresh departments
+}
 
+// Populate the edit modal
+document.querySelectorAll('.editbtn').forEach(button => {
+    button.addEventListener('click', () => {
+        currentDepartmentId = button.getAttribute('data-id'); // store departmentId
 
-
+        fetch(`/api/departments/${currentDepartmentId}`)
+            .then(response => response.json())
+            .then(department => {
+                document.querySelector('.edit-modal .title-input').value = department.department_name;
+                editModal.showModal();
+            })
+            .catch(err => console.log(err));
+    });
+});
 
 // CREATE
-document.querySelector('.add-modal .save').addEventListener('click', (event) => {
+document.querySelector('.new-department-form').addEventListener('submit', (event) => {
     event.preventDefault();
-
-    const departmentName = document.querySelector('.add-modal .title-input').value.trim();
+    const departmentName = document.querySelector('.new-department-form .name-input').value.trim();
 
     fetch('/api/departments', {
         method: 'POST',
@@ -31,67 +33,39 @@ document.querySelector('.add-modal .save').addEventListener('click', (event) => 
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        addModal.close();
         refreshDepartments();
     })
     .catch(err => console.log(err));
 });
 
+// UPDATE
+document.querySelector('.edit-modal .save').addEventListener('click', (event) => {
+    event.preventDefault();
+    const departmentName = document.querySelector('.edit-modal .title-input').value.trim();
 
-
+    fetch(`/api/departments/${currentDepartmentId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ departmentName }),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        editModal.close();
+        refreshDepartments();
+    })
+    .catch(err => console.log(err));
+});
 
 // DELETE
 document.querySelector('.edit-modal .delete').addEventListener('click', (event) => {
-    const departmentId = event.target.getAttribute('data-id');
-
-    fetch(`/api/departments/${departmentId}`, {
+    fetch(`/api/departments/${currentDepartmentId}`, {
         method: 'DELETE',
     })
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        refreshDepartments();
+        window.location.href = "/departments";
     })
     .catch(err => console.log(err));
-});
-
-
-
-
-// Populate the edit modal
-document.querySelectorAll('.editbtn').forEach(button => {
-    button.addEventListener('click', () => {
-
-        const departmentId = button.getAttribute('data-id');
-
-        fetch(`/api/departments/${departmentId}`)
-            .then(response => response.json())
-            .then(department => {
-                document.querySelector('.edit-modal .title-input').value = department.department_name;
-
-                // UPDATE
-                document.querySelector('.edit-modal .save').addEventListener('click', (event) => {
-                    event.preventDefault();
-
-                    const departmentName = document.querySelector('.edit-modal .title-input').value.trim();
-
-                    fetch(`/api/departments/${departmentId}`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ departmentName }),
-                        headers: { 'Content-Type': 'application/json' },
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        editModal.close();
-                        refreshDepartments();
-                    })
-                    .catch(err => console.log(err));
-                });
-
-                document.querySelector('.edit-modal .delete').setAttribute('data-id', department.id);
-                editModal.showModal();
-            })
-            .catch(err => console.log(err));
-    });
 });

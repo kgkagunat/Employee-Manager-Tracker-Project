@@ -39,6 +39,8 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const departmentToDelete = await Department.findByPk(req.params.id);
+        console.log('Department to delete:', departmentToDelete); // ADDED LINE
+
         if (!departmentToDelete) {
             res.status(404).json({ message: 'No department found with this id!' });
             return;
@@ -48,6 +50,8 @@ router.delete('/:id', async (req, res) => {
         const unassignedDepartment = await Department.findOne({
             where: {department_name: 'Unassigned Department (DO NOT REMOVE)'}
         });
+        console.log('Unassigned department:', unassignedDepartment); // ADDED LINE
+
         if (!unassignedDepartment) {
             res.status(404).json({ message: 'No Unassigned Department found!' });
             return;
@@ -68,7 +72,7 @@ router.delete('/:id', async (req, res) => {
             where: {id: req.params.id},
         });
 
-        res.redirect('/departments');
+        res.status(200).json({message:'Department deleted successfully.'}); // CHANGED LINE
     } catch (err) {
         res.status(500).json(err);
     };
