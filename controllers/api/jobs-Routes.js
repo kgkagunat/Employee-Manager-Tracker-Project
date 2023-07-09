@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
-const { checkAuthenticated } = require('../../utils/checkAuth');
 
 
 
 // GET all jobs
-router.get('/', checkAuthenticated, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const jobsData = await Jobs.findAll({
             include: [
@@ -27,7 +26,7 @@ router.get('/', checkAuthenticated, async (req, res) => {
 
 
 // GET a single job by id
-router.get('/:id', checkAuthenticated, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const jobData = await Jobs.findByPk(req.params.id, {
             include: [
@@ -54,7 +53,7 @@ router.get('/:id', checkAuthenticated, async (req, res) => {
 
 
 // POST a new job
-router.post('/', checkAuthenticated, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         await Jobs.create(req.body);
         res.redirect('/jobs');
@@ -66,7 +65,7 @@ router.post('/', checkAuthenticated, async (req, res) => {
 
 
 // PUT update a job by id
-router.put('/:id', checkAuthenticated, async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const jobData = await Jobs.update(req.body, {
             where: {id: req.params.id},
@@ -86,7 +85,7 @@ router.put('/:id', checkAuthenticated, async (req, res) => {
 
 
 // DELETE a job by id
-router.delete('/:id', checkAuthenticated, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const jobsToDelete = await Jobs.findByPk(req.params.id);
         if (!jobsToDelete) {

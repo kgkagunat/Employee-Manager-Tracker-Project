@@ -46,7 +46,7 @@
 {{#each departments as |department|}}
     <div class="card">
         <div class="department-edit">
-            <button class="editbtn" data-id="{{department.id}}"><a href="/homepage/departments/{{department.id}}"><span class="material-symbols-outlined openbtn">edit_square</span></a></button>
+            <button class="editbtn" data-id="{{department.id}}"><a href="/departments/{{department.id}}"><span class="material-symbols-outlined openbtn">edit_square</span></a></button>
         </div>
         <div class="department-title">
             <h3>{{department.department_name}}</h3>
@@ -54,8 +54,7 @@
         <div class="department-jobs">
             <ul>
                 {{#each department.jobs as |job|}}
-                    <li>{{job.job_title}}</li>
-                    <li>{{job.job_description}}</li>
+                    <li>{{job.job_name}}</li>
                 {{/each}}
             </ul>
         </div>

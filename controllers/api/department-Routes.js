@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
-const { checkAuthenticated } = require('../../utils/checkAuth');
 
 
 // POST a new Department
