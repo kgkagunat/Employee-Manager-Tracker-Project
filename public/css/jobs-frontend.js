@@ -1,24 +1,12 @@
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('.grid').addEventListener('click', async (event) => {
-      if (event.target.classList.contains('jobs-edit')) {
-        const id = event.target.getAttribute('data-id');
-        const response = await fetch(`/api/jobs/${id}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-  
+document.querySelector('.grid').addEventListener('click', async (event) => {
+    if (event.target.classList.contains('edit')) {
+        const currentJobId = event.target.parentNode.dataset.id; // Retrieve the data-id attribute from the parent element
+        const response = await fetch(`/api/jobs/${currentJobId}`);
         if (response.ok) {
-          document.location.replace(`/jobs/${id}`);
+            document.location.replace(`/jobs/${currentJobId}`);
         } else {
-          alert('Failed to edit job');
+            alert('Failed to edit job');
         }
-      }
-    });
-  
-    document.querySelector('.jobs-add').addEventListener('click', (event) => {
-      // Handle job creation logic
-    });
+    }
   });
   
