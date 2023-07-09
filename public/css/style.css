@@ -360,7 +360,7 @@ h1 {
     
 }
 
-.save, .delete, .cancel, .jobs-add {
+.save, .delete, .cancel, .create, .jobs-add {
     text-decoration: none;
     border: none;
     border-radius: .375rem;
@@ -373,14 +373,14 @@ h1 {
     background-color: var(--marigold);
 }
 
-.save:hover, .delete:hover {
+.save:hover, .delete:hover, .create:hover {
     cursor: pointer;
 
     color: var(--marigold);
     background-color: var(--denim);
 }
 
-#department-title, #job-title{
+#department-title, #job-title, #new-department-title, #new-department-description {
     background-color: var(--screen);
     border: var(--denim) solid;
     border-radius: 5px;
