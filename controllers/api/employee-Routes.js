@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { Department, Jobs, Employee  } = require('../../models');
+const { Department, Jobs, Employee } = require('../../models');
+const { checkAuthenticated } = require('../../utils/checkAuth');
 
-//===========================================================================
+
 
 // GET all employees
-router.get('/', async (req, res) => {
+router.get('/', checkAuthenticated, async (req, res) => {
     try {
         const employeeData = await Employee.findAll({
             include: [
@@ -19,16 +20,18 @@ router.get('/', async (req, res) => {
             ]
         });
 
-        res.status(200).json(employeeData);
+        const employees = employeeData.map((employee) => employee.get({ plain: true }));
+
+        res.render('employees', { employees });
     } catch (err) {
         res.status(500).json(err);
     };
 });
 
-//===========================================================================
+
 
 // GET a single employee by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkAuthenticated, async (req, res) => {
     try {
         const employeeData = await Employee.findByPk(req.params.id, {
             include: [
@@ -43,51 +46,57 @@ router.get('/:id', async (req, res) => {
             ]
         });
 
-        res.status(200).json(employeeData);
+        if (!employeeData) {
+            res.status(404).json({ message: 'No employee found with this id!' });
+            return;
+        }
+
+        const employee = employeeData.get({ plain: true });
+
+        res.render('employee', { employee });
     } catch (err) {
         res.status(500).json(err);
     };
 });
 
-//===========================================================================
+
 
 // POST a new employee
-router.post('/', async (req, res) => {
+router.post('/', checkAuthenticated, async (req, res) => {
     try {
-        const employeeData = await Employee.create(req.body);
-        res.status(200).json(employeeData);
+        await Employee.create(req.body);
+        res.redirect('/employees');
     } catch (err) {
         res.status(500).json(err);
     };
 });
 
-//===========================================================================
+
 
 // PUT update an employee by id
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkAuthenticated, async (req, res) => {
     try {
-        const [numberOfAffectedRows, affectedRows] = await Employee.update(req.body, {
+        const employeeData = await Employee.update(req.body, {
             where: {id: req.params.id},
-            returning: true,
         });
 
-        if (numberOfAffectedRows === 0) {
+        if (!employeeData) {
             res.status(404).json({ message: 'No employee found with this id!' });
             return;
         };
 
-        res.status(200).json(affectedRows);
+        res.redirect('/employees');
     } catch (err) {
         res.status(500).json(err);
     };
 });
 
-//===========================================================================
+
 
 // DELETE an employee by id
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkAuthenticated, async (req, res) => {
     try {
-        const employeeToDelete = await Employee.findByPk(req.params.id);    // Fetch the `Employee` model. Stores data in `employeeToDelete` TEMPORARILY for only this function router.delete(). Once function ends, `employeeToDelete` will be garbaged.f
+        const employeeToDelete = await Employee.findByPk(req.params.id);
 
         if (!employeeToDelete) {
             res.status(404).json({ message: 'No employee found with this id!' });
@@ -98,12 +107,12 @@ router.delete('/:id', async (req, res) => {
             where: {id: req.params.id},
         });
 
-        res.status(200).json({ message: `Employee '${employeeToDelete.first_name} ${employeeToDelete.last_name}' has been deleted!` });
+        res.redirect('/employees');
     } catch (err) {
         res.status(500).json(err);
     };
 });
 
-//===========================================================================
+
 
 module.exports = router;

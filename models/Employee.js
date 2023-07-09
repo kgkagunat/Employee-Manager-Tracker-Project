@@ -60,7 +60,3 @@ Employee.init(
 //============================================================================================
 
 module.exports = Employee;
-
-
-// Let me know if there are any `errors` in the model
-// Let me know if you want to add/change the `properties` of the model

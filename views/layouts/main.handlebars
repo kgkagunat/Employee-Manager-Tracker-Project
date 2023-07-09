@@ -6,26 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Management Portal</title>
   <link rel="stylesheet" href="/css/style.css">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
 </head>
 
 <body>
-  {{#if logged_in}} 
-    
-  {{/if}}
+  <header>
+    <div class="header">
+      <h1>
+        Management Portal
+      </h1>
+      <div class="hamburger" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    {{#if logged_in}}
+    <nav id="dropdown" class="dropdown-content">
+      <a href="/">Home</a>
+      <a href="/departments">Departments</a>
+      <a href="/jobs">Jobs</a>
+      <button id="logout">Logout</button>
+    </nav>
+    {{/if}}
+  </header>
+  
   <main class="container container-fluid mt-5">
     {{{ body }}}
   </main>
+
   <footer>
-      
   </footer>
 
   {{#if logged_in}}
-  <script src="/js/logout.js"></script>
+  <script src="/css/logout.js"></script>
   {{/if}}
 </body>
-<script src="/css/basic.js"></script>
 
+<script src="/css/basic.js"></script>
 </html>

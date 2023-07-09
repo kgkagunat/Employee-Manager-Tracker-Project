@@ -1,5 +1,4 @@
 const { User } = require('../models');
-console.log(User);          // !!! TESTING purposes only !!!
 
 const userData = [
     {

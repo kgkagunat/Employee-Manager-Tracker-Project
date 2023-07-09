@@ -1,11 +1,11 @@
-const router = require('express').Router();             // Import Router Express
+const router = require('express').Router();        
 
-const apiRoutes = require('./api');                     // Import `API` Routes Folder (contains all API routes)
-const loginRoutes = require('./login-Routes')           // Import `Login` Routes
-const homeRoutes = require('./homepage-Routes');        // Import `Homepage` Routes
+const apiRoutes = require('./api');                    
+const loginRoutes = require('./login-Routes')          
+const homeRoutes = require('./homepage-Routes');       
 
-router.use('/', loginRoutes);                           // Pathing `loginRoutes` => /login
-router.use('/homepage', homeRoutes);                    // Pathing `homeRoutes` => /homepage
-router.use('/api', apiRoutes);                          // Pathing `apiRoutes` => /api      
+router.use('/', loginRoutes);                           
+router.use('/homepage', homeRoutes);                    
+router.use('/api', apiRoutes);                               
 
-module.exports = router;                                // Export `router`
+module.exports = router;  

@@ -1,18 +1,45 @@
 const router = require('express').Router();
-const { User } = require('../models');
-const initialize = require('../utils/initialize');
-const checkAuthenticated = require('../utils/checkAuth')
-const checkNotAuthenticated = require('../utils/checkAuth')
+const passport = require('passport');
+const { checkNotAuthenticated } = require('../utils/checkAuth');
+const { User } = require('../models/User');
 
-router.get('/', checkAuthenticated, checkNotAuthenticated, async (req, res) =>{
-  res.render('jobs')
-})
+// User Registration
+router.post('/register', async (req, res) => {
+  try {
+    if (!req.body.name || !req.body.email || !req.body.password) {
+      return res.status(400).json({ message: "Missing name, email or password" });
+    }
 
-router.get('/login', (req, res) => {
-    res.render('jobs');
+    const newUser = await User.create(req.body);
+    res.status(200).json(newUser);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// Login Page
+router.get('/login', checkNotAuthenticated, (req, res) => {
+  res.render('login');
+});
+
+// User Login
+router.post('/api/login', passport.authenticate('local', {
+  successRedirect: '/',
+  // failureRedirect: '/login',
+  // failureFlash: true
+}));
+
+// User Logout
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.session.destroy(err => {
+    if (err) {
+      res.json({ success: false, message: 'Failed to logout' });
+    } else {
+      res.clearCookie('connect.sid');
+      res.json({ success: true });
+    }
+  });
 });
 
 module.exports = router;
-
-// !!! TESTING PURPOSES ONLY !!!
-// !!! THIS LOGIN ROUTE WILL BE REPLACED IN THE FUTURE !!!
