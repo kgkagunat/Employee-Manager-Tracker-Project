@@ -12,6 +12,31 @@ const jobsData = [
         department_id: 2
     },
     {
+        job_title: 'Software Engineer',
+        job_description: 'Head of the engineering team',
+        department_id: 2
+    },
+    {
+        job_title: 'Mechanical Engineer',
+        job_description: 'Head of the engineering team',
+        department_id: 2
+    },
+    {
+        job_title: 'Electrical Engineer',
+        job_description: 'Head of the engineering team',
+        department_id: 2
+    },
+    {
+        job_title: 'Legal Team Lead',
+        job_description: 'Representing our clients and other legal proceedings',
+        department_id: 3
+    },
+    {
+        job_title: 'Volunteer Law Intern',
+        job_description: 'Representing our clients and other legal proceedings',
+        department_id: 3
+    },
+    {
         job_title: 'Lawyer',
         job_description: 'Representing our clients and other legal proceedings',
         department_id: 3
