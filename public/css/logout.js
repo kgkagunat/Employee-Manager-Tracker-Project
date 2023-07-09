@@ -1,13 +1,14 @@
-document.querySelector('#logout').addEventListener('click', async (event) => {
-    event.preventDefault();
-
+const logout = async () => {
     const response = await fetch('/logout', {
-        method: 'GET',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-        document.location.replace('/login');
+        document.location.replace('/');
     } else {
-        console.log('Failed to log out');
+        alert('Failed to log out');
     }
-});
+};
+
+document.querySelector('#logout').addEventListener('click', logout);

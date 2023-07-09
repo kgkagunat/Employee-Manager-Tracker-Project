@@ -1,45 +1,44 @@
 const router = require('express').Router();
-const passport = require('passport');
-const { checkNotAuthenticated } = require('../utils/checkAuth');
+const bcrypt = require('bcrypt');
 const { User } = require('../models/User');
 
-// User Registration
-router.post('/register', async (req, res) => {
-  try {
-    if (!req.body.name || !req.body.email || !req.body.password) {
-      return res.status(400).json({ message: "Missing name, email or password" });
-    }
+// Hardcoded user data
+const user = {
+    id: 1,
+    email: 'JohnDoe@test.com',
+    password: bcrypt.hashSync('test1234', 10)
+};
 
-    const newUser = await User.create(req.body);
-    res.status(200).json(newUser);
-  } catch (err) {
-    res.status(400).json(err);
-  }
+router.get('/', (req, res) => {
+    res.render('login');
 });
 
-// Login Page
-router.get('/login', checkNotAuthenticated, (req, res) => {
-  res.render('login');
+// Login route
+router.post('/', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (email !== user.email || !bcrypt.compareSync(password, user.password)) {
+        return res.status(401).json({ message: 'Invalid email or password.' });
+    }
+
+    // Save the user in session
+    req.session.user = {
+        id: user.id,
+        email: user.email
+    };
+
+    return res.status(200).json({ message: 'Logged in successfully.' });
 });
 
-// User Login
-router.post('/api/login', passport.authenticate('local', {
-  successRedirect: '/',
-  // failureRedirect: '/login',
-  // failureFlash: true
-}));
-
-// User Logout
-router.get('/logout', (req, res) => {
-  req.logout();
-  req.session.destroy(err => {
-    if (err) {
-      res.json({ success: false, message: 'Failed to logout' });
-    } else {
-      res.clearCookie('connect.sid');
-      res.json({ success: true });
-    }
-  });
+// Logout route
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Could not log out, please try again.' });
+        } else {
+            return res.status(200).json({ message: 'Logged out successfully.' });
+        }
+    });
 });
 
 module.exports = router;
