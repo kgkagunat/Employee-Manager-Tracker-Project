@@ -1,0 +1,34 @@
+<h1>Hello</h1>
+<span class="material-symbols-outlined openbtn">Edit Department</span>
+{{#each department.jobs as |job|}}
+    <li>{{job.job_title}}</li>
+{{/each}}
+
+<dialog class="modal edit-modal">
+    
+    <button class="cancelbtn"><span class="material-symbols-outlined closebtn">cancel</span></button>
+
+    <h2>Edit Department</h2>
+
+    <label class="department-titles" for="department-title">Department title: {{department.title}}</label>
+      <input class="title-input" type="text" id="department-title" />
+
+    <label class="job-lists" for="job-list">Jobs:</label>
+    <div class="jobs-card">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="modalbtns">
+        <button class="delete">Delete</button>
+        <button data-id={{department.id}} class="save">Save</button>
+    </div>
+
+</dialog>
+<script src="/css/update-department.js"></script>

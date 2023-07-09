@@ -27,7 +27,8 @@ router.put('/:id', async (req, res) => {
             return;
         };
 
-        res.redirect('/departments');
+        // res.redirect('/departments');
+        res.status(200).json({message:'department update'});
     } catch (err) {
         res.status(500).json(err);
     };

@@ -15,13 +15,13 @@ router.get('/departments', async (req, res) => {
           include: [
               { 
                   model: Jobs,
-                  include: [ Employee ] 
+                //   include: [ Employee ] 
               }
           ]
       });
 
       const departments = departmentData.map((department) => department.get({ plain: true }));
-
+      console.log(departments[1].jobs);
       res.render('departments', { departments });
   } catch (err) {
       res.status(500).json(err);
