@@ -2,56 +2,6 @@ const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
 
 
-
-// GET all jobs
-router.get('/', async (req, res) => {
-    try {
-        const jobsData = await Jobs.findAll({
-            include: [
-                {
-                    model: Department,
-                    attributes: ['id', 'department_name']
-                }
-            ]
-        });
-
-        const jobs = jobsData.map((job) => job.get({ plain: true }));
-
-        res.render('jobs', { jobs });
-    } catch (err) {
-        res.status(500).json(err);
-    };
-});
-
-
-
-// GET a single job by id
-router.get('/:id', async (req, res) => {
-    try {
-        const jobData = await Jobs.findByPk(req.params.id, {
-            include: [
-                {
-                    model: Department,
-                    attributes: ['id', 'department_name']
-                }
-            ]
-        });
-
-        if (!jobData) {
-            res.status(404).json({ message: 'No job found with this id!' });
-            return;
-        }
-
-        const job = jobData.get({ plain: true });
-
-        res.render('job', { job });
-    } catch (err) {
-        res.status(500).json(err);
-    };
-});
-
-
-
 // POST a new job
 router.post('/', async (req, res) => {
     try {

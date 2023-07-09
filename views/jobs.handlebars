@@ -1,37 +1,14 @@
-<header>
-    <div class="header">
-        <h1>
-        Management Portal
-        </h1>
-        
-        <div class="hamburger" onclick="myFunction(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-    </div>
-
-    <div class="line"></div>
-
-    <nav id="dropdown" class="dropdown-content">
-        <a href="#">Home</a>
-        <a href="#">Departments</a>
-        <a href="#">Jobs</a>
-        <a href="#">Logout</a>
-    </nav>
-    
-
-</header>
-
-
 <div class="grid">
     <div class="jobs-title">Title</div>
     <div class="jobs-salary">Salary</div>
     <div class="jobs-department">Department</div>
     <div class="filler"><button class="jobs-add">Add</button></div>
 
-    <div class="jobs-title">Eletrical Engineer</div>
-    <div class="jobs-salary">60000</div>
-    <div class="jobs-department">Engineering</div>
-    <div><button class="jobs-edit">Edit</button></div>
+    {{#each jobs}}
+    <div class="jobs-title">{{this.job_title}}</div>
+    <div class="jobs-salary">{{this.salary}}</div>
+    <div class="jobs-department">{{this.department.department_name}}</div>
+    <div><button class="jobs-edit" data-id="{{this.id}}">Edit</button></div>
+    {{/each}}
 </div>
+<script src="/css/jobs-frontend.js" defer></script>
