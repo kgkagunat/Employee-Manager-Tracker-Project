@@ -10,7 +10,7 @@ document.querySelectorAll('.editbtn').forEach(button => {
     button.addEventListener('click', () => {
         currentDepartmentId = button.getAttribute('data-id'); // store departmentId
 
-        fetch(`/api/departments/${currentDepartmentId}`)
+        fetch(`/api/departments/${currentDepartmentId}`) // Change here
             .then(response => response.json())
             .then(department => {
                 document.querySelector('.edit-modal .title-input').value = department.department_name;
@@ -20,30 +20,19 @@ document.querySelectorAll('.editbtn').forEach(button => {
     });
 });
 
-// CREATE
-document.querySelector('.new-department-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    const departmentName = document.querySelector('.new-department-form .name-input').value.trim();
-
-    fetch('/api/departments', {
-        method: 'POST',
-        body: JSON.stringify({ departmentName }),
-        headers: { 'Content-Type': 'application/json' },
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        refreshDepartments();
-    })
-    .catch(err => console.log(err));
+// Open Create Modal
+document.querySelector('.add-department').addEventListener('click', () => {
+    document.querySelector('.create-modal').showModal();
 });
+
+
 
 // UPDATE
 document.querySelector('.edit-modal .save').addEventListener('click', (event) => {
     event.preventDefault();
     const departmentName = document.querySelector('.edit-modal .title-input').value.trim();
 
-    fetch(`/api/departments/${currentDepartmentId}`, {
+    fetch(`/api/departments/${currentDepartmentId}`, { // Change here
         method: 'PUT',
         body: JSON.stringify({ departmentName }),
         headers: { 'Content-Type': 'application/json' },
@@ -59,7 +48,7 @@ document.querySelector('.edit-modal .save').addEventListener('click', (event) =>
 
 // DELETE
 document.querySelector('.edit-modal .delete').addEventListener('click', (event) => {
-    fetch(`/api/departments/${currentDepartmentId}`, {
+    fetch(`/api/departments/${currentDepartmentId}`, { // Change here
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -69,3 +58,4 @@ document.querySelector('.edit-modal .delete').addEventListener('click', (event) 
     })
     .catch(err => console.log(err));
 });
+
