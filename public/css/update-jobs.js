@@ -41,7 +41,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
   
 // DELETE
     deleteButton.addEventListener('click', async (event) => {
-    console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
+    //console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
     event.preventDefault();
 
     const jobId = deleteButton.getAttribute('data-id');

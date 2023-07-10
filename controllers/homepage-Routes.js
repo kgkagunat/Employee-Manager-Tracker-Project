@@ -25,7 +25,7 @@ router.get('/departments', async (req, res) => {
           include: [
               { 
                   model: Jobs,
-                //   include: [ Employee ] 
+                  include: [ Employee ] 
               }
           ]
       });
@@ -151,6 +151,7 @@ router.get('/employees', async (req, res) => {
 
 
 // GET a single employee by id
+// GET a single employee by id
 router.get('/employees/:id', async (req, res) => {
     try {
         const employeeData = await Employee.findByPk(req.params.id, {
@@ -173,11 +174,26 @@ router.get('/employees/:id', async (req, res) => {
 
         const employee = employeeData.get({ plain: true });
 
-        res.render('employee', { employee });
+        // Fetch all departments and jobs
+        const departmentData = await Department.findAll();
+        const departments = departmentData.map((department) => department.get({ plain: true }));
+
+        const jobsData = await Jobs.findAll();
+        const jobs = jobsData.map((job) => job.get({ plain: true }));
+
+        // Merge employee, departments, and jobs data into a single object
+        const data = {
+            employee,
+            departments,
+            jobs
+        };
+
+        res.render('employee', data);
     } catch (err) {
         res.status(500).json(err);
     };
 });
+
 
 //===========================================================================
 
