@@ -384,7 +384,11 @@ h1 {
     background-color: var(--denim);
 }
 
-#department-title, #job-title, #new-department-title, #new-department-description, #job-description, #job-salary, #job-department, #new-job-title, #new-job-description, #new-job-salary, #new-job-department {
+#department-title, #job-title, #new-department-title, 
+#new-department-description, #job-description, #job-salary, 
+#job-department, #new-job-title, #new-job-description, 
+#new-job-salary, #new-job-department {
+
     background-color: var(--screen);
     border: var(--denim) solid;
     border-radius: 5px;
@@ -631,3 +635,28 @@ a:hover, .cancelbtn > a:hover {
     color: var(--darkgray)
 }
 
+#new-employee-first-name,
+#new-employee-last-name, #new-employee-title, #new-employee-manager, #new-employee-job, #new-employee-department {
+    background-color: var(--screen);
+    border: var(--denim) solid;
+    border-radius: 5px;
+    height: 25px;
+    width: 90%;
+    margin: 15px 0;
+}
+
+.employee-titles {
+    display:inline-block;
+}
+
+.modal2 {
+    width: 30%;
+    height: 73vh;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--screen);
+    color: var(--denim);
+    padding: 30px 20px 20px 30px;
+    margin-top: 60px;
+   
+}
