@@ -56,4 +56,22 @@ window.addEventListener("DOMContentLoaded", (event)=>{
       })
       .catch(err => console.error(err));
   });
-  });
+  
+// DELETE
+    deleteButton.addEventListener('click', async (event) => {
+    //console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
+    event.preventDefault();
+
+    const jobId = deleteButton.getAttribute('data-id');
+
+    fetch(`/api/jobs/${jobId}`, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        window.location.href = '/jobs';  // Redirect to /jobs page
+    })
+    .catch(err => console.error(err));
+});
+});
