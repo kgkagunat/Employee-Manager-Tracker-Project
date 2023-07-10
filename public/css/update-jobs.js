@@ -1,47 +1,55 @@
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.edit-modal .save').addEventListener('click', async (event) => {
-      event.preventDefault();
-  
-      const currentJobId = event.target.dataset.id;
-      const jobTitle = document.getElementById('job-title').value.trim();
-      const jobDescription = document.getElementById('job-description').value.trim();
-      const jobSalary = document.getElementById('job-salary').value.trim();
-      const jobDepartment = document.getElementById('job-department').value.trim();
-  
-      const response = await fetch(`/api/jobs/${currentJobId}`, {
+let dialog = document.querySelector('.edit-modal');
+console.log("Dialog:", dialog);  // Check whether the dialog is correctly selected
+
+let saveButton = document.querySelector('.edit-modal .save');
+let deleteButton = document.querySelector('.edit-modal .delete');
+
+console.log("Save button:", saveButton);  // Check whether the saveButton is correctly selected
+console.log("Delete button:", deleteButton);  // Check whether the deleteButton is correctly selected
+
+// UPDATE
+saveButton.addEventListener('click', async (event) => {
+    console.log("Save button clicked");  // Check whether the saveButton click event is firing
+    event.preventDefault();
+
+    const jobId = saveButton.getAttribute('data-id');
+    const jobTitle = document.getElementById('job-title').value.trim();
+    const jobDescription = document.getElementById('job-description').value.trim();
+    const jobSalary = document.getElementById('job-salary').value.trim();
+    const jobDepartment = document.querySelector('#job-department option:checked').value; 
+
+    fetch(`/api/jobs/${jobId}`, {
         method: 'PUT',
         body: JSON.stringify({
-          job_title: jobTitle,
-          job_description: jobDescription,
-          job_salary: jobSalary,
-          department_id: jobDepartment
+            job_title: jobTitle,
+            job_description: jobDescription,
+            job_salary: jobSalary,
+            department_id: jobDepartment
         }),
         headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        console.log('Job updated successfully');
-        location.href = '/jobs';
-      } else {
-        alert('Failed to update job');
-      }
-    });
-  
-    document.querySelector('.edit-modal .delete').addEventListener('click', async (event) => {
-      event.preventDefault();
-  
-      const currentJobId = event.target.dataset.id;
-  
-      const response = await fetch(`/api/jobs/${currentJobId}`, {
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        window.location.href = '/jobs';  // Redirect to /jobs page
+    })
+    .catch(err => console.error(err));
+});
+
+// DELETE
+deleteButton.addEventListener('click', async (event) => {
+    console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
+    event.preventDefault();
+
+    const jobId = deleteButton.getAttribute('data-id');
+
+    fetch(`/api/jobs/${jobId}`, {
         method: 'DELETE',
-      });
-  
-      if (response.ok) {
-        console.log('Job deleted successfully');
-        location.href = '/jobs';
-      } else {
-        console.log('Failed to delete job');
-      }
-    });
-  });
-  
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        window.location.href = '/jobs';  // Redirect to /jobs page
+    })
+    .catch(err => console.error(err));
+});
