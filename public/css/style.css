@@ -3,6 +3,7 @@
     --denim: #1A2930;
     --screen: #a7a5a5;
     --darkgray: #777777;
+
 }
 
 
@@ -11,8 +12,6 @@ html {
     font-family: "Helvetica", sans-serif;
     background-color: var(--denim);
 }
-
-
 
 
 /* Login */
@@ -256,7 +255,7 @@ h1 {
 
 }
 
-.department-title {
+.department-title, .job-title{
     text-align: center;
     font-size: 25px;
     margin-top: 50px;
@@ -305,11 +304,25 @@ h1 {
     margin: 50px;
 }
 
-.add::before {
+.add-department > a > .add::before {
     content: "+";
     width: 300px;
     height: 300px;
     font-size:100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:light;
+    font-family:courier;
+    color:var(--screen);
+    cursor: pointer;
+}
+
+.add-employee > a > .add::before {
+    content: "+";
+    width: 30px;
+    height: 30px;
+    font-size:40px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -357,9 +370,11 @@ h1 {
 .modalbtns {
     display: flex;
     justify-content: space-around;
+    margin: 20px 10px 0 0;
+    
 }
 
-.save, .delete, .cancel, .jobs-add {
+.save, .delete, .cancel, .create, .jobs-add {
     text-decoration: none;
     border: none;
     border-radius: .375rem;
@@ -372,14 +387,14 @@ h1 {
     background-color: var(--marigold);
 }
 
-.save:hover, .delete:hover {
+.save:hover, .delete:hover, .create:hover {
     cursor: pointer;
 
     color: var(--marigold);
     background-color: var(--denim);
 }
 
-#department-title {
+#department-title, #job-title, #new-department-title, #new-department-description, #job-description, #job-salary, #job-department, #new-job-title, #new-job-description, #new-job-salary, #new-job-department {
     background-color: var(--screen);
     border: var(--denim) solid;
     border-radius: 5px;
@@ -500,9 +515,7 @@ h1 {
 
 .grid > div {
     border-bottom: var(--screen) solid;
-    margin-top: 20px;
     color: var(--screen);
-    
     
 }
 .grid > .filler > .jobs-edit {
@@ -513,4 +526,51 @@ h1 {
 
 a {
     text-decoration: none;
+    color: var(--screen);
 }
+
+a:hover, .cancelbtn > a:hover {
+    color: var(--darkgray);
+}
+
+.cancelbtn > a {
+    color: var(--marigold)
+}
+
+.dropdown-content > a {
+    color: var(--denim);
+}
+
+.dropdown-content > a:hover {
+    color: var(--marigold);
+}
+
+.jobs-edit > a {
+    color: var(--marigold);
+}
+
+.jobs-edit > a:hover {
+    color: var(--screen);
+
+}
+
+.grid > div {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    display: flex;
+
+    padding: 10px 0 10px 0;
+    border: 1px solid;
+}
+
+.list-title {
+    font-weight: 400;
+    font-size: 25px;
+    color: var(--marigold)
+}
+
+.job-titles {
+    display:inline-block
+}
+
