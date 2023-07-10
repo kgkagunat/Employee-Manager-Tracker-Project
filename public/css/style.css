@@ -651,7 +651,7 @@ a:hover, .cancelbtn > a:hover {
 
 .modal2 {
     width: 30%;
-    height: 73vh;
+    height: 66vh;
     border: none;
     border-radius: 20px;
     background-color: var(--screen);

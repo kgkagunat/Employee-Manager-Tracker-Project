@@ -9,13 +9,13 @@
     <label class="employee-titles" for="employee-last-name">Last Name:</label>
     <input class="last-name-input" type="text" id="new-employee-last-name" value=""></input>
 
-    <label class="employee-titles" for="employee-title">Employee Title:</label>
-    <input class="title-input" type="text" id="new-employee-title" value=""></input>
+    {{!-- <label class="employee-titles" for="employee-title">Employee Title:</label>
+    <input class="title-input" type="text" id="new-employee-title" value=""></input> --}}
 
     <label class="employee-titles" for="employee-manager">Employee Manager:</label>
     <input class="manager-input" type="text" id="new-employee-manager" value=""></input>
 
-    <label class="employee-titles" for="employee-job">Job Assignment:</label>
+    <label class="employee-titles" for="employee-job">Job Title:</label>
     <select class="job-select" id="new-employee-job">
         {{#each jobs}}
             <option value="{{this.id}}">{{this.job_title}}</option>
