@@ -36,7 +36,7 @@ router.get('/departments', checkAuthenticated, async (req, res) => {
 
 
 // GET a single Department by id
-router.get('/departments/:id', async (req, res) => {
+router.get('/departments/:id', checkAuthenticated, async (req, res) => {
   try {
       const departmentData = await Department.findByPk(req.params.id, {
           include: [
@@ -185,7 +185,5 @@ router.get('/employees/:id', checkAuthenticated, async (req, res) => {
     };
 });
 
-
-//===========================================================================
 
 module.exports = router;

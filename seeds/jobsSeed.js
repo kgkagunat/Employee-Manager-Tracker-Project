@@ -3,7 +3,7 @@ const { Jobs } = require('../models');
 const jobsData = [
     {
         job_title: 'Unassigned Jobs (DO NOT REMOVE)',
-        job_description: 'This jobs is for unassigned jobs (DO NOT REMOVE)',
+        job_description: 'This jobs is for unassigned employees to be placed in',
         job_salary: '0',
         department_id: 1
     },
@@ -48,6 +48,18 @@ const jobsData = [
         job_description: 'Representing our clients and other legal proceedings',
         job_salary: '80000',
         department_id: 3
+    },
+    {
+        job_title: 'Education Coordinator',
+        job_description: 'Coordinates the education program',
+        job_salary: '90000',
+        department_id: 4
+    },
+    {
+        job_title: 'Full Stack Professor',
+        job_description: 'Coordinates the education program',
+        job_salary: '80000',
+        department_id: 4
     }
 ]
 
