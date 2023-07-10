@@ -380,7 +380,7 @@ h1 {
     background-color: var(--denim);
 }
 
-#department-title, #job-title, #new-department-title, #new-department-description, #job-description, #job-salary, #job-department {
+#department-title, #job-title, #new-department-title, #new-department-description, #job-description, #job-salary, #job-department, #new-job-title, #new-job-description, #new-job-salary, #new-job-department {
     background-color: var(--screen);
     border: var(--denim) solid;
     border-radius: 5px;
@@ -556,4 +556,7 @@ a:hover, .cancelbtn > a:hover {
     color: var(--marigold)
 }
 
+.job-titles {
+    display:inline-block
+}
 
