@@ -1,4 +1,46 @@
 window.addEventListener("DOMContentLoaded", (event)=>{
+<<<<<<< HEAD
+=======
+
+let dialog = document.querySelector('.edit-modal');
+console.log("Dialog:", dialog);  // Check whether the dialog is correctly selected
+
+let saveButton = document.querySelector('.edit-modal .save');
+let deleteButton = document.querySelector('.edit-modal .delete');
+
+console.log("Save button:", saveButton);  // Check whether the saveButton is correctly selected
+console.log("Delete button:", deleteButton);  // Check whether the deleteButton is correctly selected
+
+// UPDATE
+saveButton.addEventListener('click', async (event) => {
+    console.log("Save button clicked");  // Check whether the saveButton click event is firing
+    event.preventDefault();
+
+    const jobId = saveButton.getAttribute('data-id');
+    const jobTitle = document.getElementById('job-title').value.trim();
+    const jobDescription = document.getElementById('job-description').value.trim();
+    const jobSalary = document.getElementById('job-salary').value.trim();
+    const jobDepartment = document.querySelector('#job-department option:checked').value; 
+    console.log(jobId)
+
+    fetch(`/api/jobs/${jobId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            job_title: jobTitle,
+            job_description: jobDescription,
+            job_salary: jobSalary,
+            department_id: jobDepartment
+        }),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        window.location.href = '/jobs';  // Redirect to /jobs page
+    })
+    .catch(err => console.error(err));
+});
+>>>>>>> 9e380189cb27a737d3f88068d44493b9c1b32ae6
 
   let dialog = document.querySelector('.edit-modal');
   console.log("Dialog:", dialog);  // Check whether the dialog is correctly selected
@@ -40,7 +82,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
   });
   
 // DELETE
-deleteButton.addEventListener('click', async (event) => {
+    deleteButton.addEventListener('click', async (event) => {
     console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
     event.preventDefault();
 
@@ -55,5 +97,10 @@ deleteButton.addEventListener('click', async (event) => {
         window.location.href = '/jobs';  // Redirect to /jobs page
     })
     .catch(err => console.error(err));
+<<<<<<< HEAD
     });
 }); 
+=======
+});
+})
+>>>>>>> 9e380189cb27a737d3f88068d44493b9c1b32ae6
