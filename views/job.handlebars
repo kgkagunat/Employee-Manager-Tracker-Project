@@ -12,9 +12,10 @@
 
     <input class="title-input" type="text" id="job-title" value="{{job.job_salary}}"></input>
 
-    <label class="department-titles" for="department-title">Department: {{department.title}}</label>
+    <label class="department-titles" for="department-title">Department:</label>
 
-    <input class="title-input" type="text" id="department-title" value="{{department.title}}"></input>
+    <input class="title-input" type="text" id="department-title" value="{{job.department.department_name}}"></input>
+
 
     <div class="modalbtns">
         <button data-id={{job.id}} class="delete">Delete</button> <!-- Add data-id here -->
