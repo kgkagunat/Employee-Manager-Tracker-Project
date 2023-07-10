@@ -3,13 +3,13 @@
   <div class="jobs-title">Title</div>
   <div class="jobs-salary">Salary</div>
   <div class="jobs-department">Department</div>
-  <div class="filler"><button class="jobs-add"><a href="/api/jobs/create">Add</a></button></div>
+  <div class="filler"><a href="/api/jobs/create"><button class="jobs-add">Add</button></a></div>
 
   {{#each jobs}}
   <div class="jobs-title">{{this.job_title}}</div>
   <div class="jobs-salary">{{this.job_salary}}</div>
   <div class="jobs-department">{{this.department.department_name}}</div>
-  <div><button class="jobs-edit" data-id="{{this.id}}"><a href="/jobs/{{this.id}}">Edit</a></button></div>
+  <div><a href="/jobs/{{this.id}}"><button class="jobs-edit" data-id="{{this.id}}">Edit</button></a></div>
   {{/each}}
 </div>
 <script src="/css/jobs-frontend.js"></script>

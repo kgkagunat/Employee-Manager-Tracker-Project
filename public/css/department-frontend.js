@@ -8,9 +8,9 @@ function refreshDepartments() {
 // Populate the edit modal
 document.querySelectorAll('.editbtn').forEach(button => {
     button.addEventListener('click', () => {
-        currentDepartmentId = button.getAttribute('data-id'); // store departmentId
+        currentDepartmentId = button.getAttribute('data-id'); 
 
-        fetch(`/api/departments/${currentDepartmentId}`) // Change here
+        fetch(`/api/departments/${currentDepartmentId}`)
             .then(response => response.json())
             .then(department => {
                 document.querySelector('.edit-modal .title-input').value = department.department_name;
@@ -25,14 +25,12 @@ document.querySelector('.add-department').addEventListener('click', () => {
     document.querySelector('.create-modal').showModal();
 });
 
-
-
 // UPDATE
 document.querySelector('.edit-modal .save').addEventListener('click', (event) => {
     event.preventDefault();
     const departmentName = document.querySelector('.edit-modal .title-input').value.trim();
 
-    fetch(`/api/departments/${currentDepartmentId}`, { // Change here
+    fetch(`/api/departments/${currentDepartmentId}`, { 
         method: 'PUT',
         body: JSON.stringify({ departmentName }),
         headers: { 'Content-Type': 'application/json' },
@@ -48,7 +46,7 @@ document.querySelector('.edit-modal .save').addEventListener('click', (event) =>
 
 // DELETE
 document.querySelector('.edit-modal .delete').addEventListener('click', (event) => {
-    fetch(`/api/departments/${currentDepartmentId}`, { // Change here
+    fetch(`/api/departments/${currentDepartmentId}`, { 
         method: 'DELETE',
     })
     .then(response => response.json())

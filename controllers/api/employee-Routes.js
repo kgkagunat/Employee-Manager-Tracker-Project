@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
 
+
 // Route to render 'create-employee' view
 router.get('/create', async (req, res) => {
     console.log('Hit /create route');
@@ -16,6 +17,7 @@ router.get('/create', async (req, res) => {
         res.status(500).json(err);
     };
 });
+
 
 // GET employee details by id
 router.get('/:id', async (req, res) => {
@@ -43,16 +45,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-
-// // POST a new employee
-// router.post('/', async (req, res) => {
-//     try {
-//         await Employee.create(req.body);
-//         res.redirect('/employees');
-//     } catch (err) {
-//         res.status(500).json(err);
-//     };
-// });
 
 // POST a new employee
 router.post('/', async (req, res) => {
@@ -90,7 +82,6 @@ router.put('/:id', async (req, res) => {
         res.status(500).json(err);
     };
 });
-
 
 
 // DELETE an employee by id

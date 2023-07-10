@@ -13,16 +13,14 @@ router.get('/create', async (req, res) => {
 
 // POST route to create a new department
 router.post('/', async (req, res) => {
-    // console.log(req.body); // This will print the request body
     try {
         const newDepartment = await Department.create({
             department_name: req.body.department_name,
-            description: req.body.description // include the description field
+            description: req.body.description
         });
 
         res.status(201).json(newDepartment);
     } catch (err) {
-        // console.error(err); // This will print the error stack trace
         res.status(500).json(err);
     }
 });

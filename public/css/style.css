@@ -636,7 +636,8 @@ a:hover, .cancelbtn > a:hover {
 }
 
 #new-employee-first-name,
-#new-employee-last-name, #new-employee-title, #new-employee-manager, #new-employee-job, #new-employee-department {
+#new-employee-last-name, #new-employee-title, #new-employee-manager, #new-employee-job, #new-employee-department, 
+#edit-employee-first-name, #edit-employee-last-name, #edit-employee-manager, #edit-employee-job, #edit-employee-department   {
     background-color: var(--screen);
     border: var(--denim) solid;
     border-radius: 5px;

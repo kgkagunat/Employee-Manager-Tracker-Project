@@ -1,14 +1,10 @@
 window.addEventListener("DOMContentLoaded", (event)=>{
 
     let dialog = document.querySelector('.edit-modal');
-    console.log("Dialog:", dialog);
     
     let saveButton = document.querySelector('.edit-modal .save');
     let deleteButton = document.querySelector('.edit-modal .delete');
     
-    console.log("Save button:", saveButton);  // Check whether the saveButton is correctly selected
-    console.log("Delete button:", deleteButton);    //
-
     // UPDATE
     saveButton.addEventListener('click', async (event) => {
       console.log(saveButton.dataset.id)
@@ -22,7 +18,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         const employeeManager = document.getElementById('edit-employee-manager').value.trim();
         const employeeJob = document.querySelector('#edit-employee-job option:checked').value;
         const employeeDepartment = document.querySelector('#edit-employee-department option:checked').value;
-        console.log(employeeId, employeeFirstName, employeeLastName, employeeTitle, employeeManager, employeeJob, employeeDepartment);
+        
   
         fetch(`/api/employees/${employeeId}`, {
             method: 'PUT',
@@ -36,7 +32,6 @@ window.addEventListener("DOMContentLoaded", (event)=>{
             }),
             headers: { 'Content-Type': 'application/json' },
         })
-        // .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
             window.location.href = '/employees';
@@ -53,7 +48,6 @@ window.addEventListener("DOMContentLoaded", (event)=>{
       fetch(`/api/employees/${employeeId}`, {
         method: 'DELETE',
       })
-      // .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
         window.location.href = '/employees';

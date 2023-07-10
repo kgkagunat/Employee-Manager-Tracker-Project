@@ -1,7 +1,7 @@
 document.querySelectorAll('.editbtn').forEach((button) => {
   button.addEventListener('click', async (e) => {
       const id = e.target.getAttribute('data-id');
-      console.log(e.target);
+      
       try {
           const response = await fetch(`/api/employees/${id}`);
           if (response.ok) {

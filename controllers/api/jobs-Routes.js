@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
 
+
 // Route to render 'create-job' view
 router.get('/create', async (req, res) => {
     console.log('Hit /create route');
@@ -12,6 +13,7 @@ router.get('/create', async (req, res) => {
         res.status(500).json(err);
     };
 });
+
 
 // POST route to create a new job
 router.post('/', async (req, res) => {
@@ -28,6 +30,7 @@ router.post('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
 
 // NEW: GET job details by id
 router.get('/:id', async (req, res) => {
@@ -46,6 +49,7 @@ router.get('/:id', async (req, res) => {
     }
   });
 
+
 // PUT update a Job by id
 router.put('/:id', async (req, res) => {
     try {
@@ -63,6 +67,7 @@ router.put('/:id', async (req, res) => {
         res.status(500).json(err);
     };
 });
+
 
 // DELETE a Job by id (re-assign employees to Unassigned Job)
 router.delete('/:id', async (req, res) => {

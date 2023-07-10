@@ -1,5 +1,5 @@
 <!-- Edit Employee Modal -->
-<dialog open class="modal edit-modal">
+<dialog open class="modal2 edit-modal">
     <button class="cancelbtn"><a href="/employees"><span class="material-symbols-outlined closebtn">cancel</span></a></button>
     <h2>Edit Employee</h2>
 
@@ -9,13 +9,13 @@
     <label class="employee-titles" for="employee-last-name">Last Name:</label>
     <input class="last-name-input" type="text" id="edit-employee-last-name" value="{{employee.last_name}}"></input>
 
-    <label class="employee-titles" for="employee-title">Employee Title:</label>
-    <input class="title-input" type="text" id="edit-employee-title" value="{{employee.employee_title}}"></input>
+    <label class="employee-titles" for="employee-title" style="visibility: hidden;">Employee Title:</label>                                         <!-- made this hidden, so modal works -->
+    <input class="title-input" type="text" id="edit-employee-title" value="{{employee.employee_title}}" style="visibility: hidden;"></input>        <!-- made this hidden, so modal works -->
 
     <label class="employee-titles" for="employee-manager">Employee Manager:</label>
     <input class="manager-input" type="text" id="edit-employee-manager" value="{{employee.employee_manager}}"></input>
 
-    <label class="employee-titles" for="employee-job">Job:</label>
+    <label class="employee-titles" for="employee-job">Job Title:</label>
     <select class="job-select" id="edit-employee-job">
         {{#each jobs}}
             <option value="{{this.id}}" {{#if (eq this.id ../employee.employee.job_id)}} selected {{/if}}>{{this.job_title}}</option>

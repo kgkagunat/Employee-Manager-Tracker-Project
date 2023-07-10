@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 // Make sure to serialize the JSON body
                 body: JSON.stringify(newDepartment),
             }).then((response) => {
-                // Check that the response is all good
-                // Redirect the user to the departments page
                 if (response.ok) {
                     console.info('Department created successfully');
                     location.href = '/departments';
