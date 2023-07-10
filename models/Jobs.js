@@ -24,7 +24,7 @@ Jobs.init(
         },
         job_salary: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         department_id: {
             type: DataTypes.INTEGER,

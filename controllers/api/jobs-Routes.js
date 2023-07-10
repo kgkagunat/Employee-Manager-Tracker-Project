@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
             job_description: req.body.job_description,
             job_salary: req.body.job_salary,
             department_id: req.body.department_id
-        });
+        }); 
 
         res.status(201).json(newJob);
     } catch (err) {
