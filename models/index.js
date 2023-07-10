@@ -10,7 +10,8 @@ Department.hasMany(Jobs, {              // Department has many jobs
 });
 
 Jobs.belongsTo(Department, {            // Jobs belong to department       
-    foreignKey: 'department_id'
+    foreignKey: 'department_id',
+    onDelete: 'CASCADE'
 });
 
 Jobs.hasMany(Employee, {                // Jobs has many employees
@@ -18,7 +19,8 @@ Jobs.hasMany(Employee, {                // Jobs has many employees
 });
 
 Employee.belongsTo(Jobs, {              // Employee belongs to jobs   
-    foreignKey: 'job_id'
+    foreignKey: 'job_id',
+    onDelete: 'CASCADE'
 });
 
 Department.hasMany(Employee, {          // Department has many employees    
@@ -26,7 +28,8 @@ Department.hasMany(Employee, {          // Department has many employees
 });
 
 Employee.belongsTo(Department, {        // Employee belongs to department  
-    foreignKey: 'department_id'
+    foreignKey: 'department_id',
+    onDelete: 'CASCADE'
 });
 
 //============================================================================================

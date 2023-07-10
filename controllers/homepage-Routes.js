@@ -19,7 +19,7 @@ router.get('/', checkAuthenticated, async (req, res) =>{
 //===========================================================================
 
 // GET All Departments
-router.get('/departments', async (req, res) => {
+router.get('/departments', checkAuthenticated, async (req, res) => {
   try {
       const departmentData = await Department.findAll({
           include: [
@@ -68,7 +68,7 @@ router.get('/departments/:id', async (req, res) => {
 //===========================================================================
 
 // GET all jobs
-router.get('/jobs', async (req, res) => {
+router.get('/jobs', checkAuthenticated, async (req, res) => {
     try {
         const jobsData = await Jobs.findAll({
             include: [
@@ -88,7 +88,7 @@ router.get('/jobs', async (req, res) => {
 });
 
 // GET a single job by id
-router.get('/jobs/:id', async (req, res) => {
+router.get('/jobs/:id', checkAuthenticated, async (req, res) => {
     try {
         const jobData = await Jobs.findByPk(req.params.id, {
             include: [
@@ -125,7 +125,7 @@ router.get('/jobs/:id', async (req, res) => {
 //===========================================================================
 
 // GET all employees
-router.get('/employees', async (req, res) => {
+router.get('/employees', checkAuthenticated, async (req, res) => {
     try {
         const employeeData = await Employee.findAll({
             include: [
@@ -150,7 +150,7 @@ router.get('/employees', async (req, res) => {
 
 
 // GET a single employee by id
-router.get('/employees/:id', async (req, res) => {
+router.get('/employees/:id', checkAuthenticated, async (req, res) => {
     try {
         const employeeData = await Employee.findByPk(req.params.id, {
             include: [

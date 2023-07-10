@@ -76,7 +76,7 @@ router.delete('/:id', async (req, res) => {
 
         // Fetch the `Unassigned Job`
         const unassignedJob = await Jobs.findOne({
-            where: {job_title: 'Unassigned Job (DO NOT REMOVE)'}
+            where: {job_title: 'Unassigned Jobs (DO NOT REMOVE)'}
         });
 
         if (!unassignedJob) {
