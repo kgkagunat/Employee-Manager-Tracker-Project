@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
   });
   
 // DELETE
-deleteButton.addEventListener('click', async (event) => {
+    deleteButton.addEventListener('click', async (event) => {
     console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
     event.preventDefault();
 
@@ -55,5 +55,5 @@ deleteButton.addEventListener('click', async (event) => {
         window.location.href = '/jobs';  // Redirect to /jobs page
     })
     .catch(err => console.error(err));
-    });
-}); 
+});
+});
