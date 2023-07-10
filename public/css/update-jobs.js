@@ -14,11 +14,12 @@ window.addEventListener("DOMContentLoaded", (event)=>{
       console.log("Save button clicked");  // Check whether the saveButton click event is firing
       event.preventDefault();
   
-      const jobId = saveButton.getAttribute('#data-id');
+      const jobId = saveButton.dataset.id;
       const jobTitle = document.getElementById('job-title').value.trim();
       const jobDescription = document.getElementById('job-description').value.trim();
       const jobSalary = document.getElementById('job-salary').value.trim();
-      const jobDepartment = document.querySelector('#job-department option:checked').value; 
+      const jobDepartment = document.querySelector('#job-department option:checked').value;
+      console.log(jobId, jobTitle, jobDescription, jobSalary, jobDepartment); 
   
       fetch(`/api/jobs/${jobId}`, {
           method: 'PUT',
@@ -38,22 +39,21 @@ window.addEventListener("DOMContentLoaded", (event)=>{
       .catch(err => console.error(err));
   });
   
-  // DELETE
-  
-      deleteButton.addEventListener('click', async (event) => {
-      console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
-      event.preventDefault();
-  
-      const jobId = deleteButton.getAttribute('#data-id');
-  
-      fetch(`/api/jobs/${jobId}`, {
-          method: 'DELETE',
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log('Success:', data);
-          window.location.href = '/jobs';  // Redirect to /jobs page
-      })
-      .catch(err => console.error(err));
-  });
-  })
+// DELETE
+deleteButton.addEventListener('click', async (event) => {
+    console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
+    event.preventDefault();
+
+    const jobId = deleteButton.getAttribute('data-id');
+
+    fetch(`/api/jobs/${jobId}`, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        window.location.href = '/jobs';  // Redirect to /jobs page
+    })
+    .catch(err => console.error(err));
+    });
+}); 
