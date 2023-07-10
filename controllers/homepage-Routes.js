@@ -2,21 +2,17 @@ const router = require('express').Router();
 const { User, Department, Jobs, Employee } = require('../models');
 const { checkAuthenticated } = require('../utils/checkAuth');
 
-//===========================================================================
-
 // New route for /homepage
 router.get('/homepage', checkAuthenticated, async (req, res) =>{
   res.render('homepage');
 })
 
-//===========================================================================
 
 // Existing route
 router.get('/', checkAuthenticated, async (req, res) =>{
   res.render('homepage');
 })
 
-//===========================================================================
 
 // GET All Departments
 router.get('/departments', checkAuthenticated, async (req, res) => {
@@ -31,12 +27,13 @@ router.get('/departments', checkAuthenticated, async (req, res) => {
       });
 
       const departments = departmentData.map((department) => department.get({ plain: true }));
-      console.log(departments[1].jobs);
+      
       res.render('departments', { departments });
   } catch (err) {
       res.status(500).json(err);
   };
 });
+
 
 // GET a single Department by id
 router.get('/departments/:id', async (req, res) => {
@@ -64,9 +61,6 @@ router.get('/departments/:id', async (req, res) => {
 });
 
 
-
-//===========================================================================
-
 // GET all jobs
 router.get('/jobs', checkAuthenticated, async (req, res) => {
     try {
@@ -86,6 +80,7 @@ router.get('/jobs', checkAuthenticated, async (req, res) => {
         res.status(500).json(err);
     };
 });
+
 
 // GET a single job by id
 router.get('/jobs/:id', checkAuthenticated, async (req, res) => {
@@ -121,8 +116,6 @@ router.get('/jobs/:id', checkAuthenticated, async (req, res) => {
     };
 });
 
-
-//===========================================================================
 
 // GET all employees
 router.get('/employees', checkAuthenticated, async (req, res) => {
