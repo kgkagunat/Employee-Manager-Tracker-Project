@@ -106,11 +106,21 @@ router.get('/jobs/:id', async (req, res) => {
 
         const job = jobData.get({ plain: true });
 
-        res.render('job', { job });
+        const departmentData = await Department.findAll();
+        const departments = departmentData.map((department) => department.get({ plain: true }));
+
+        // Merge the job and departments into a single object before sending to the view
+        const data = {
+            ...job,
+            departments
+        }
+
+        res.render('job', data);
     } catch (err) {
         res.status(500).json(err);
     };
 });
+
 
 //===========================================================================
 

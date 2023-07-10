@@ -4,25 +4,30 @@
 
     <h2>Edit Job</h2>
 
-    <label class="job-titles" for="job-title">Job title: {{job.title}}</label>
+    <label class="job-titles" for="job-title">Job title:</label>
 
-    <input class="title-input" type="text" id="job-title" value="{{job.job_title}}"></input>
+    <input class="title-input" type="text" id="job-title" value="{{job_title}}"></input>
 
-    <label class="job-titles" for="job-title">Salary: {{job.salary}}</label>
+    <label class="job-titles" for="job-description">Description:</label>
 
-    <input class="title-input" type="text" id="job-title" value="{{job.job_salary}}"></input>
+    <input class="description-input" type="text" id="job-description" value="{{job_description}}"></input>
 
-    <label class="department-titles" for="department-title">Department:</label>
+    <label class="job-titles" for="job-salary">Salary:</label>
 
-    <input class="title-input" type="text" id="department-title" value="{{job.department.department_name}}"></input>
+    <input class="salary-input" type="text" id="job-salary" value="{{job_salary}}"></input>
 
+    <label class="job-titles" for="job-department">Department:</label>
+    <select class="department-select" id="job-department">
+        {{#each departments}}
+        <option value="{{this.id}}" {{#if (eq this.id ../job.job.department_id)}}selected{{/if}}>{{this.department_name}}</option>
+        {{/each}}
+    </select>
 
     <div class="modalbtns">
-        <button data-id={{job.id}} class="delete">Delete</button> <!-- Add data-id here -->
-        <button data-id={{job.id}} class="save">Save</button>
+        <button class="delete" data-id={{job.job.id}}>Delete</button>
+        <button class="save" data-id={{job.job.id}}>Save</button>
     </div>
-
     
 </dialog>
 
-<script src="js will be added"></script> 
+<script src="/css/update-jobs.js"></script>

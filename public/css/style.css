@@ -380,7 +380,7 @@ h1 {
     background-color: var(--denim);
 }
 
-#department-title, #job-title, #new-department-title, #new-department-description {
+#department-title, #job-title, #new-department-title, #new-department-description, #job-description, #job-salary, #job-department {
     background-color: var(--screen);
     border: var(--denim) solid;
     border-radius: 5px;

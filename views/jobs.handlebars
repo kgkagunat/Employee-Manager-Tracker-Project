@@ -1,14 +1,14 @@
 <div class="grid">
-    <div class="list-title jobs-title">Title</div>
-    <div class="list-title jobs-salary">Salary</div>
-    <div class="list-title jobs-department">Department</div>
-    <div class="filler"><a href="/jobs/{{job.id}}"><button class="jobs-add">Add</button></a></div>
+  <div class="jobs-title">Title</div>
+  <div class="jobs-salary">Salary</div>
+  <div class="jobs-department">Department</div>
+  <div class="filler"><button class="jobs-add"><a href="/api/jobs/create">Add</a></button></div>
 
-    {{#each jobs}}
-    <div class="jobs-title">{{this.job_title}}</div>
-    <div class="jobs-salary">{{this.job_salary}}</div>
-    <div class="jobs-department">{{this.department.department_name}}</div>
-    <div class="edit-job"><button onclick="window.location.href='/jobs/7';" class="jobs-edit" data-id="{{this.job.id}}">Edit</button></div>
-    {{/each}}
+  {{#each jobs}}
+  <div class="jobs-title">{{this.job_title}}</div>
+  <div class="jobs-salary">{{this.job_salary}}</div>
+  <div class="jobs-department">{{this.department.department_name}}</div>
+  <div><button class="jobs-edit" data-id="{{this.id}}"><a href="/jobs/{{this.id}}">Edit</a></button></div>
+  {{/each}}
 </div>
 <script src="/css/jobs-frontend.js" defer></script>

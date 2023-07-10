@@ -1,0 +1,25 @@
+<!-- Create Job Modal -->
+<dialog open class="modal create-modal">
+    <button class="cancelbtn"><a href="/jobs"><span class="material-symbols-outlined closebtn">cancel</span></a></button>
+    <h2>Create Job</h2>
+    <label class="job-titles" for="job-title">Job title:</label>
+    <input class="title-input" type="text" id="new-job-title" value=""></input>
+    
+    <label class="job-titles" for="job-description">Job Description:</label>
+    <input class="description-input" type="text" id="new-job-description" value=""></input>
+    
+    <label class="job-titles" for="job-salary">Job Salary:</label>
+    <input class="salary-input" type="text" id="new-job-salary" value=""></input>
+    
+    <label class="job-titles" for="job-department">Job Department:</label>
+    <select class="department-select" id="new-job-department">
+        {{#each departments}}
+            <option value="{{this.id}}">{{this.department_name}}</option>
+        {{/each}}
+    </select>
+    
+    <div class="modalbtns">
+        <button class="create">Create</button>
+    </div>
+</dialog>
+<script src="/css/create-jobs.js"></script>
