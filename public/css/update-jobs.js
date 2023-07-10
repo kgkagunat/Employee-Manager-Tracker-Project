@@ -1,3 +1,5 @@
+window.addEventListener("DOMContentLoaded", (event)=>{
+
 let dialog = document.querySelector('.edit-modal');
 console.log("Dialog:", dialog);  // Check whether the dialog is correctly selected
 
@@ -17,6 +19,7 @@ saveButton.addEventListener('click', async (event) => {
     const jobDescription = document.getElementById('job-description').value.trim();
     const jobSalary = document.getElementById('job-salary').value.trim();
     const jobDepartment = document.querySelector('#job-department option:checked').value; 
+    console.log(jobId)
 
     fetch(`/api/jobs/${jobId}`, {
         method: 'PUT',
@@ -37,7 +40,7 @@ saveButton.addEventListener('click', async (event) => {
 });
 
 // DELETE
-deleteButton.addEventListener('click', async (event) => {
+    deleteButton.addEventListener('click', async (event) => {
     console.log("Delete button clicked");  // Check whether the deleteButton click event is firing
     event.preventDefault();
 
@@ -53,3 +56,4 @@ deleteButton.addEventListener('click', async (event) => {
     })
     .catch(err => console.error(err));
 });
+})
