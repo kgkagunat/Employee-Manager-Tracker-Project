@@ -6,7 +6,7 @@
         <li>Manager</li>
         <li>Department</li>
     </ul>
-    <button class="add-employee"><a href=""><div class="add"></div></a></button>
+    <button class="add-employee"><a href="/api/employees/create"><div class="add"></div></a></button>
 </div>
 
 {{#each employees}}
@@ -20,4 +20,4 @@
     <button class="editbtn" data-id="{{this.id}}"><span class="material-symbols-outlined openbtn">edit_square</span></button>
 </div>
 {{/each}}
-<script src="/css/employee-frontend.js" defer></script>
+<script src="/css/employee-frontend.js"></script>

@@ -1,11 +1,21 @@
 const router = require('express').Router();
 const { Department, Jobs, Employee } = require('../../models');
 
+// Route to render 'create-employee' view
+router.get('/create', async (req, res) => {
+    console.log('Hit /create route');
+    try {
+        const departmentData = await Department.findAll();
+        const departments = departmentData.map((department) => department.get({ plain: true }));
 
+        const jobData = await Jobs.findAll();
+        const jobs = jobData.map((job) => job.get({ plain: true }));
 
-
-
-
+        res.render('create-employee', { departments, jobs });
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
 
 // POST a new employee
 router.post('/', async (req, res) => {
