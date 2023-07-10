@@ -1,23 +1,23 @@
 {{> navbar}}
 <div class="employees-top-bar">
-    <ul>
-        <li>Name</li>
-        <li>Title</li>
-        <li>Manager</li>
-        <li>Department</li>
-    </ul>
-    <button class="add-employee"><a href="/api/employees/create"><div class="add"></div></a></button>
+    
+        <div class="employees-title-list">Name</div>
+        <div class="employees-title-list">Title</div>
+        <div class="employees-title-list">Manager</div>
+        <div class="employees-title-list">Department</div>
+        <div class="employee-add"><button class="add-employee"><a href="/api/employees/create"><div class="add"></div></a></button></div>
+    
 </div>
 
 {{#each employees}}
 <div class="employee-info">
-    <ul>
-        <li>{{this.first_name}} {{this.last_name}}</li>
-        <li>{{this.job.job_title}}</li>
-        <li>{{this.employee_manager}}</li>
-        <li>{{this.department.department_name}}</li>
-    </ul>
-    <button class="editbtn"><span class="material-symbols-outlined openbtn" data-id="{{this.id}}">edit_square</span></button>
+    
+    <div class="employees-list">{{this.first_name}} {{this.last_name}}</div>    
+    <div class="employees-list">{{this.job.job_title}}</div>
+    <div class="employees-list">{{this.employee_manager}}</div>
+    <div class="employees-list">{{this.department.department_name}}</div>
+    <div><button class="editbtn employee-edit" data-id="{{this.id}}"><span class="material-symbols-outlined openbtn">edit_square</span></button></div> 
+
 </div>
 {{/each}}
 <script src="/css/employee-frontend.js"></script>

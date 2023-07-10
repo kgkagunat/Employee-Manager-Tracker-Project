@@ -23,10 +23,10 @@ Employee.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        employee_title: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+        // employee_title: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
         employee_manager: {
             type: DataTypes.STRING,
             allowNull: false

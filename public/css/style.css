@@ -318,18 +318,8 @@ h1 {
     cursor: pointer;
 }
 
-.add-employee > a > .add::before {
-    content: "+";
-    width: 30px;
-    height: 30px;
-    font-size:40px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:light;
-    font-family:courier;
-    color:var(--screen);
-    cursor: pointer;
+.add-department > a:hover > .add::before {
+    color: var(--darkgray)
 }
 
 /* Department Modals */
@@ -394,7 +384,11 @@ h1 {
     background-color: var(--denim);
 }
 
-#department-title, #job-title, #new-department-title, #new-department-description, #job-description, #job-salary, #job-department, #new-job-title, #new-job-description, #new-job-salary, #new-job-department {
+#department-title, #job-title, #new-department-title, 
+#new-department-description, #job-description, #job-salary, 
+#job-department, #new-job-title, #new-job-description, 
+#new-job-salary, #new-job-department {
+
     background-color: var(--screen);
     border: var(--denim) solid;
     border-radius: 5px;
@@ -574,3 +568,95 @@ a:hover, .cancelbtn > a:hover {
     display:inline-block
 }
 
+.employees-top-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--screen);
+    font-size: 25px;
+    padding: 30px 0px 10px 0px;
+}
+
+.employee-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--screen);
+    font-size: 25px;
+    padding: 30px 0px 10px 0px;
+}
+
+.employees-list, .employees-title-list {
+    width: 280px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.employee-info {
+    padding: 25px 0px 25px 0px;
+    color: var(--marigold);
+    border-top: var(--darkgray) solid;
+}
+
+.add-employee > a {
+    color: var(--marigold);
+}
+
+.employee-edit, .add-employee {
+    background: none;
+    border: none;
+
+}
+
+.employee-edit {
+    color: var(--screen);
+}
+
+.employee-edit:hover {
+    color: var(--darkgray);
+    cursor: pointer;
+}
+
+.add-employee > a > .add::before {
+    content: "+";
+    width: 25px;
+    height: 25px;
+    font-size:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:light;
+    font-family:courier;
+    color:var(--marigold);
+}
+
+.add-employee > a:hover > .add::before {
+    color: var(--darkgray)
+}
+
+#new-employee-first-name,
+#new-employee-last-name, #new-employee-title, #new-employee-manager, #new-employee-job, #new-employee-department {
+    background-color: var(--screen);
+    border: var(--denim) solid;
+    border-radius: 5px;
+    height: 25px;
+    width: 90%;
+    margin: 15px 0;
+}
+
+.employee-titles {
+    display:inline-block;
+}
+
+.modal2 {
+    width: 30%;
+    height: 66vh;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--screen);
+    color: var(--denim);
+    padding: 30px 20px 20px 30px;
+    margin-top: 60px;
+   
+}
