@@ -44,12 +44,29 @@ router.get('/:id', async (req, res) => {
 });
 
 
+// // POST a new employee
+// router.post('/', async (req, res) => {
+//     try {
+//         await Employee.create(req.body);
+//         res.redirect('/employees');
+//     } catch (err) {
+//         res.status(500).json(err);
+//     };
+// });
 
 // POST a new employee
 router.post('/', async (req, res) => {
     try {
-        await Employee.create(req.body);
-        res.redirect('/employees');
+        const newEmployee = await Employee.create({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            title: req.body.title,
+            manager: req.body.manager,
+            job_id: req.body.job_id,
+            department_id: req.body.department_id
+        });
+
+        res.status(201).json(newEmployee);
     } catch (err) {
         res.status(500).json(err);
     };

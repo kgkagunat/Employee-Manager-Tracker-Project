@@ -11,6 +11,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
     // UPDATE
     saveButton.addEventListener('click', async (event) => {
+      console.log(saveButton.dataset.id)
         console.log("Save button clicked");
         event.preventDefault();
     
@@ -21,6 +22,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         const employeeManager = document.getElementById('edit-employee-manager').value.trim();
         const employeeJob = document.querySelector('#edit-employee-job option:checked').value;
         const employeeDepartment = document.querySelector('#edit-employee-department option:checked').value;
+        console.log(employeeId, employeeFirstName, employeeLastName, employeeTitle, employeeManager, employeeJob, employeeDepartment);
   
         fetch(`/api/employees/${employeeId}`, {
             method: 'PUT',
@@ -36,6 +38,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         })
         .then(response => response.json())
         .then(data => {
+            console.log('Success:', data);
             window.location.href = '/employees';
         })
         .catch(err => console.error(err));

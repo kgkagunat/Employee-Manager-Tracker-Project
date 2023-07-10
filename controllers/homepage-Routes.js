@@ -149,8 +149,6 @@ router.get('/employees', async (req, res) => {
 });
 
 
-
-// GET a single employee by id
 // GET a single employee by id
 router.get('/employees/:id', async (req, res) => {
     try {
