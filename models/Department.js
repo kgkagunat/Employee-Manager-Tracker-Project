@@ -24,9 +24,9 @@ Department.init(
     },
     {
         sequelize,
-        timestamps: true, // true by default, added for clarity
-        createdAt: 'creationDate', // renames the auto generated createdAt to creationDate
-        updatedAt: 'modifiedDate', // renames the auto generated updatedAt to modifiedDate
+        timestamps: true, 
+        createdAt: 'creationDate', 
+        updatedAt: 'modifiedDate', 
         freezeTableName: true,
         underscored: true,
         modelName: 'department',
@@ -36,7 +36,3 @@ Department.init(
 //============================================================================================
 
 module.exports = Department;
-
-
-// Let me know if there are any `errors` in the model
-// Let me know if you want to add/change the `properties` of the model

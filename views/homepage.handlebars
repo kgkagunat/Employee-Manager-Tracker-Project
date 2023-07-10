@@ -1,36 +1,12 @@
-<header>
-    <div class="header">
-        <h1>
-        Management Portal
-        </h1>
-        
-        <div class="hamburger" onclick="myFunction(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-    </div>
-
-    <div class="line"></div>
-
-    <nav id="dropdown" class="dropdown-content">
-        <a href="#">Home</a>
-        <a href="#">Departments</a>
-        <a href="#">Jobs</a>
-        <a href="#">Logout</a>
-    </nav>
-    
-
-</header>
-
+{{> navbar}}
 
 <div class="circles">
     
-    <button class="circlebtn">Departments</button>
+    <button class="circlebtn" onclick="window.location.href='/departments'">Departments</button>
     
-    <button class="circlebtn">Jobs</button>
+    <button class="circlebtn" onclick="window.location.href='/jobs'">Jobs</button>
 
-    <button class="circlebtn">Employees</button>
+    <button class="circlebtn" onclick="window.location.href='/employees'">Employees</button>
 
 </div>  
 

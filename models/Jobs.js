@@ -22,6 +22,10 @@ Jobs.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        job_salary: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         department_id: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -42,6 +46,3 @@ Jobs.init(
 //============================================================================================
 
 module.exports = Jobs;
-
-// Let me know if there are any `errors` in the model
-// Let me know if you want to add/change the `properties` of the model

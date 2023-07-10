@@ -1,0 +1,36 @@
+<!-- Create Employee Modal -->
+<dialog open class="modal2 create-modal">
+    <button class="cancelbtn"><a href="/employees"><span class="material-symbols-outlined closebtn">cancel</span></a></button>
+    <h2>Create Employee</h2>
+
+    <label class="employee-titles" for="employee-first-name">First Name:</label>
+    <input class="first-name-input" type="text" id="new-employee-first-name" value=""></input>
+
+    <label class="employee-titles" for="employee-last-name">Last Name:</label>
+    <input class="last-name-input" type="text" id="new-employee-last-name" value=""></input>
+
+    {{!-- <label class="employee-titles" for="employee-title">Employee Title:</label>
+    <input class="title-input" type="text" id="new-employee-title" value=""></input> --}}
+
+    <label class="employee-titles" for="employee-manager">Employee Manager:</label>
+    <input class="manager-input" type="text" id="new-employee-manager" value=""></input>
+
+    <label class="employee-titles" for="employee-job">Job Title:</label>
+    <select class="job-select" id="new-employee-job">
+        {{#each jobs}}
+            <option value="{{this.id}}">{{this.job_title}}</option>
+        {{/each}}
+    </select>
+
+    <label class="employee-titles" for="employee-department">Department:</label>
+    <select class="department-select" id="new-employee-department">
+        {{#each departments}}
+            <option value="{{this.id}}">{{this.department_name}}</option>
+        {{/each}}
+    </select>
+
+    <div class="modalbtns">
+        <button class="create">Create</button>
+    </div>
+</dialog>
+<script src="/css/create-employee.js"></script>

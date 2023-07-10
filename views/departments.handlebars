@@ -1,94 +1,28 @@
-<header>
-    <div class="header">
-        <h1>
-        Management Portal
-        </h1>
-        
-        <div class="hamburger" onclick="myFunction(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-    </div>
-
-    <div class="line"></div>
-
-    <nav id="dropdown" class="dropdown-content">
-        <a href="#">Home</a>
-        <a href="#">Departments</a>
-        <a href="#">Jobs</a>
-        <a href="#">Logout</a>
-    </nav>
-    
-
-</header>
-
-<dialog class="modal edit-modal">
-    
-    <button class="cancelbtn"><span class="material-symbols-outlined closebtn">cancel</span></button>
-
-    <h2>Edit Department</h2>
-
-    <label class="department-titles" for="department-title">Department title:</label>
-      <input class="title-input" type="text" id="department-title" />
-
-    <label class="job-lists" for="job-list">Jobs:</label>
-    <div class="jobs-card">
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-
-    <div class="modalbtns">
-        <button class="delete">Delete</button>
-        <button class="save">Save</button>
-    </div>
-
-</dialog>
-
-<dialog class="modal add-modal">
-    
-    <button class="cancelbtn"><span class="material-symbols-outlined closebtn">cancel</span></button>
-
-    <h2>Add Department</h2>
-
-    <label class="department-titles" for="department-title">Department title:</label>
-      <input class="title-input" type="text" id="department-title" />
-
-    <div class="modalbtns">
-        <button class="cancel">Cancel</button>
-        <button class="save">Save</button>
-    </div>
-
-</dialog>
-
+{{> navbar}}
 <div class="card-layout">
+
+{{#each departments as |department|}}
     <div class="card">
         <div class="department-edit">
-            <button class="editbtn"><span class="material-symbols-outlined openbtn">edit_square</span></button>
+            <button class="edit-department" data-id="{{department.id}}"><a href="/departments/{{department.id}}"><span class="material-symbols-outlined openbtn">edit_square</span></a></button>
         </div>
         <div class="department-title">
-            <h3>Engineering</h3>
+            <h3>{{department.department_name}}</h3>
         </div>
         <div class="department-jobs">
             <ul>
-                <li>Lead Engineer</li>
-                <li>Software Engineer</li>
-                <li>Mechanical Engineer</li>
+                {{#each department.jobs as |job|}}
+                    <li>{{job.job_title}}</li>
+                {{/each}}
             </ul>
         </div>
-
     </div>
-
+    
+{{/each}}
 
     <div class="card">
 
-        <div class="add"></div>
+        <button class="add-department"><a href="/api/departments/create"><div class="add"></div></a></button>
 
     </div>
 

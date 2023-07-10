@@ -1,0 +1,27 @@
+<dialog open class="modal edit-modal">
+    
+    <button class="cancelbtn"><a href="/departments"><span class="material-symbols-outlined closebtn">cancel</span></a></button>
+
+    <h2>Edit Department</h2>
+
+    <label class="department-titles" for="department-title">Department title: {{department.title}}</label>
+
+    <input class="title-input" type="text" id="department-title" value="{{department.department_name}}"></input>
+
+    <label class="job-lists" for="job-list">Jobs:</label>
+
+    <div class="jobs-card">
+        <ul>
+            {{#each department.jobs as |job|}}
+                <li>{{job.job_title}}</li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="modalbtns">
+        <button data-id={{department.id}} class="delete">Delete</button> <!-- Add data-id here -->
+        <button data-id={{department.id}} class="save">Save</button>
+    </div>
+    
+</dialog>
+<script src="/css/update-department.js"></script>

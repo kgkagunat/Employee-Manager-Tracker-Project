@@ -1,0 +1,32 @@
+<dialog open class="modal edit-modal">
+    
+    <button class="cancelbtn"><a href="/jobs"><span class="material-symbols-outlined closebtn">cancel</span></a></button>
+
+    <h2>Edit Job</h2>
+
+    <label class="job-titles" for="job-title">Job Title:</label>
+
+    <input class="title-input" type="text" id="job-title" value="{{job_title}}"></input>
+
+    <label class="job-titles" for="job-description">Job Description:</label>
+
+    <input class="description-input" type="text" id="job-description" value="{{job_description}}"></input>
+
+    <label class="job-titles" for="job-salary">Job Salary:</label>
+
+    <input class="salary-input" type="text" id="job-salary" value="{{job_salary}}"></input>
+
+    <label class="job-titles" for="job-department">Job Department:</label>
+    <select class="department-select" id="job-department">
+        {{#each departments}}
+        <option value="{{this.id}}" {{#if (eq this.id ../job.job.department_id)}}selected{{/if}}>{{this.department_name}}</option>
+        {{/each}}
+    </select>
+
+    <div class="modalbtns">
+        <button data-id={{this.id}} class="delete">Delete</button>
+        <button data-id={{this.id}} class="save">Save</button>
+    </div>
+    
+</dialog>
+<script src="/css/update-jobs.js"></script>
