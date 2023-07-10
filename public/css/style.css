@@ -304,11 +304,25 @@ h1 {
     margin: 50px;
 }
 
-.add::before {
+.add-department > a > .add::before {
     content: "+";
     width: 300px;
     height: 300px;
     font-size:100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:light;
+    font-family:courier;
+    color:var(--screen);
+    cursor: pointer;
+}
+
+.add-employee > a > .add::before {
+    content: "+";
+    width: 30px;
+    height: 30px;
+    font-size:40px;
     display:flex;
     align-items:center;
     justify-content:center;
