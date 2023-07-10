@@ -36,7 +36,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
             }),
             headers: { 'Content-Type': 'application/json' },
         })
-        .then(response => response.json())
+        // .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
             window.location.href = '/employees';
@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
       fetch(`/api/employees/${employeeId}`, {
         method: 'DELETE',
       })
-      .then(response => response.json())
+      // .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
         window.location.href = '/employees';
