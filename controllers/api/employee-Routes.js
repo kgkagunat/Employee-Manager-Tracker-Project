@@ -60,8 +60,8 @@ router.post('/', async (req, res) => {
         const newEmployee = await Employee.create({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
-            title: req.body.title,
-            manager: req.body.manager,
+            // employee_title: req.body.title,
+            employee_manager: req.body.employee_manager,
             job_id: req.body.job_id,
             department_id: req.body.department_id
         });
